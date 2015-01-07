@@ -1,0 +1,22 @@
+{
+  "name": "kforce-theme",
+  "version": "1.0.1",
+  "main": "index.twig",
+  "keywords": [
+    "twig",
+    "theme",
+    "bolt"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.0"
+  },
+  "private": true
+}

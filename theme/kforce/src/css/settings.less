@@ -1,0 +1,60 @@
+/* Colours
+   ========================================================================== */
+@brand-white: #fff;
+@brand-grey: #1B1B1B;
+@brand-dark-blue: #010205;
+@brand-blue: #17295f;
+@brand-light-blue: #6282e3;
+
+/* Fonts
+   ========================================================================== */
+@font-body: 'proxima-nova', Helvetica, Arial, sans-serif;
+@font-heading: 'proxima-nova', Helvetica, Arial, sans-serif;
+
+/* Units
+   ========================================================================== */
+@wrapper-width: 800px;
+@wrapper-width-large: 1000px;
+@punit: 10px;
+
+/* Media Queries
+   ========================================================================== */
+// Adapted from http://foundation.zurb.com/docs/media-queries.html
+
+// Here we define the upper bounds for each media size
+@small-size: 768px;
+@medium-size: 1024px;
+@large-size: 1440px;
+@xlarge-size: 1920px;
+
+@small-plus: (@small-size + 1);
+@medium-plus: (@medium-size + 1);
+@large-plus: (@large-size + 1);
+@xlarge-plus: (@xlarge-size + 1);
+
+// Media Queries
+@screen: ~"only screen";
+
+@landscape: ~"@{screen} and (orientation: landscape)";
+@portrait: ~"@{screen} and (orientation: portrait)";
+
+@small: @screen;
+@small-only: ~"@{screen} and (max-width: @{small-size})";
+
+@medium: ~"@{screen} and (min-width:@{small-plus})";
+@medium-only: ~"@{screen} and (min-width:@{small-plus}) and (max-width:@{medium-size})";
+
+@large: ~"@{screen} and (min-width:@{medium-plus})";
+@large-only: ~"@{screen} and (min-width:@{medium-plus}) and (max-width:@{large-size})";
+
+@xlarge: ~"@{screen} and (min-width:@{large-plus})";
+@xlarge-only: ~"@{screen} and (min-width:@{large-plus}) and (max-width:@{xlarge-size})";
+
+@xxlarge: ~"@{screen} and (min-width:@{xlarge-plus})";
+@xxlarge-only: @xxlarge;
+
+
+/* Font-Awesome
+   ========================================================================== */
+@fa-font-path:        "//netdna.bootstrapcdn.com/font-awesome/4.2.0/fonts"; // for referencing Bootstrap CDN font files directly
+

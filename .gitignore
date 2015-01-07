@@ -28,7 +28,6 @@ Vagrantfile
 .*.swp
 .swp
 *.lock
-.gitignore
 test/_log
 test/*/*Guy.php
 .buildpath
@@ -40,3 +39,4 @@ bower_components
 /bolt.log
 
 *.map
+/files/**/*

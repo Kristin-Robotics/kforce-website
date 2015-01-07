@@ -1,0 +1,24 @@
+{% extends 'dist/templates/base.twig' %}
+{% block content %}
+<!-- Main Page Content and Sidebar -->
+<!-- Main Blog Content -->
+<div class="content-wrapper" role="content">
+
+    <article>
+
+        <h1>{{ record.title }}</h1>
+
+        {% if record.subtitle %}
+            <h3>{{ record.subtitle }}</h3>
+        {% endif %}
+
+        {{ record.content }}
+
+    </article>
+
+
+</div>
+
+<!-- End Main Content -->
+<!-- End Main Content and Sidebar -->
+{% endblock %}

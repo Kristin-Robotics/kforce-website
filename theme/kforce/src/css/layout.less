@@ -1,0 +1,18 @@
+body {
+    min-height: 100%;
+    background-color: #f5f6fa;
+}
+
+.content-wrapper {
+    margin: 0 auto;
+
+    width: @wrapper-width + @punit * 2;
+    max-width: 100%;
+    padding: 0 @punit;
+    box-sizing: border-box;
+
+    @media @large {
+        width: @wrapper-width-large + @punit * 2;
+    }
+}
+

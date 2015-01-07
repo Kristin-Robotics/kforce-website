@@ -1,0 +1,68 @@
+/* Variables
+   ========================================================================== */
+
+@header-height: 40px;
+@logo-size-small: 50px;
+@logo-size-large: 100px;
+
+/* Styles
+   ========================================================================== */
+
+.site-header {
+    width: 100%;
+    text-align: center;
+
+    height: @header-height;
+
+    background: @brand-dark-blue;
+
+    .uncollapse();
+
+    .big-logo {
+        display: none;
+        margin: 10px auto;
+
+        width: 120px;
+        height: 120px;
+    }
+
+    @media @medium {
+        height: auto;
+
+        .big-logo {
+            display: block;
+        }
+
+        .logo-container {
+            display: none;
+        }
+    }
+
+
+
+
+    .logo-container {
+        position: absolute;
+        left: -5px;
+        top: (@header-height - @logo-size-small) / 2 - 5px;
+
+        height: @logo-size-small + 10px;
+        width: @logo-size-small + 10px;
+        border-radius: 50%;
+
+        background: @brand-dark-blue;
+    }
+
+    .logo {
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+        height: @logo-size-small;
+        width: @logo-size-small;
+    }
+
+    .content-wrapper {
+        position: relative;
+    }
+}
+
