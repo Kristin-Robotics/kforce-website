@@ -38,7 +38,7 @@ gulp.task('css', ['clean:css'], function() {
             errorHandler: onError
         }))
         .pipe( less({
-            paths: [path.join(__dirname, 'src', 'vendor')]
+            paths: [path.join(__dirname, 'src', 'bower')]
         }) )
         .pipe(autoprefixer({cascade: false}))
         .pipe(gulp.dest('_tmp/css'));
@@ -50,7 +50,7 @@ gulp.task('clean:js', function(cb) {
 
 //Concatenate js files and uglify in building for production
 gulp.task('js', ['clean:js'], function() {
-    return gulp.src(['src/vendor/jquery/dist/jquery.js'])
+    return gulp.src(['src/bower/jquery/dist/jquery.js', 'src/js/**/*.js'])
         .pipe(concat('main.js'))
         .pipe(gulpif(isDist, uglify()))
         .pipe(gulp.dest('_tmp/js'));

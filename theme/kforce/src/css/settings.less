@@ -5,6 +5,7 @@
 @brand-dark-blue: #010205;
 @brand-blue: #17295f;
 @brand-light-blue: #6282e3;
+@brand-bg-blue: #f5f6fa;
 
 /* Fonts
    ========================================================================== */
@@ -15,18 +16,21 @@
    ========================================================================== */
 @wrapper-width: 800px;
 @wrapper-width-large: 1000px;
-@punit: 10px;
+@punit: 20px;
 
 /* Media Queries
    ========================================================================== */
 // Adapted from http://foundation.zurb.com/docs/media-queries.html
 
 // Here we define the upper bounds for each media size
+// Make sure that these are also maintained in main.js
+@xsmall-size: 480px;
 @small-size: 768px;
 @medium-size: 1024px;
 @large-size: 1440px;
 @xlarge-size: 1920px;
 
+@xsmall-plus: (@xsmall-size + 1);
 @small-plus: (@small-size + 1);
 @medium-plus: (@medium-size + 1);
 @large-plus: (@large-size + 1);
@@ -38,8 +42,11 @@
 @landscape: ~"@{screen} and (orientation: landscape)";
 @portrait: ~"@{screen} and (orientation: portrait)";
 
-@small: @screen;
-@small-only: ~"@{screen} and (max-width: @{small-size})";
+@xsmall: @screen;
+@xsmall-only: ~"@{screen} and (max-width: @{xsmall-size})";
+
+@small: ~"@{screen} and (min-width:@{xsmall-plus})";
+@small-only: ~"@{screen} and (min-width:@{xsmall-plus}) and (max-width:@{small-size})";
 
 @medium: ~"@{screen} and (min-width:@{small-plus})";
 @medium-only: ~"@{screen} and (min-width:@{small-plus}) and (max-width:@{medium-size})";

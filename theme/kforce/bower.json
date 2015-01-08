@@ -16,7 +16,8 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~1.11.0"
+    "jquery": "~1.11.0",
+    "font-awesome": "~4.2.0"
   },
   "private": true
 }

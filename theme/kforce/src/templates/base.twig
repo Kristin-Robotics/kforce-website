@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     </head>
-    <body class="start {{ record.contenttype.singularname|lower }} {{ record.slug|lower }}">
+    <body class="{{ record.contenttype.singularname|lower }} {{ record.slug|lower }}">
         {% block supercontent %}
             <p>There is no content...</p>
         {% endblock %}

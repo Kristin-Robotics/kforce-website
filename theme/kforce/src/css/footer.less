@@ -1,0 +1,197 @@
+/* Variables
+   ========================================================================== */
+
+@footer-height: 420px;
+@footer-height-medium: 300px;
+@footer-background: #bcc2cc;
+@footer-colour: #6d7a90;
+
+@footer-cog-size: 130px;
+@footer-cog-size-medium: 300px;
+
+/* Styles
+   ========================================================================== */
+
+.site-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    height: @footer-height;
+    width: 100%;
+
+    color: @footer-colour;
+
+    background: @footer-background;
+
+    text-align: center;
+
+    .content-wrapper {
+        position: relative;
+        height: 100%;
+    }
+
+    .sponsor-message {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        color: #fff;
+        font-weight: 100;
+        font-size: 2em;
+
+        a,
+        a:visited {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: @brand-light-blue;
+        }
+    }
+
+    .friends {
+
+        h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        a,
+        a:visited {
+            display: block;
+
+            color: @footer-colour;
+            text-decoration: underline;
+        }
+    }
+
+    .logo-links {
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+
+        width: 125px;
+    }
+
+    .small-logo-links {
+        height: 30px;
+
+        text-align: justify;
+
+        &:after {
+            content: '';
+            width: 100%;
+            display: inline-block;
+        }
+    }
+
+    .logo-link {
+        display: inline-block;
+        //width: 35px;
+        .fa;
+
+        text-decoration: none;
+
+        &:before {
+            font-size: 35px;
+        }
+
+        //&.fb { text-align: left; }
+        &.fb:before {
+            content: @fa-var-facebook;
+        }
+
+        &.twit:before {
+            content: @fa-var-twitter;
+        }
+
+        //&.yt { text-align: right; }
+        &.yt:before {
+            content: @fa-var-youtube;
+        }
+    }
+
+    .kristin-logo {
+        display: block;
+        margin-bottom: 10px;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .logo-link,
+    .kristin-logo {
+        opacity: 1;
+
+        transition: 0.5s opacity;
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+
+    .copyright {
+        font-size: 0.8em;
+        margin-bottom: 0;
+    }
+
+    .background-cog {
+        position: absolute;
+        right: @punit;
+        top: -@footer-cog-size / 2.5;
+        z-index: -1;
+
+        width: @footer-cog-size;
+        height: @footer-cog-size;
+
+        @media @medium {
+
+            top: -@footer-cog-size-medium / 2.5;
+
+            width: @footer-cog-size-medium;
+            height: @footer-cog-size-medium;
+        }
+
+        @media @large {
+            right: -@footer-cog-size-medium / 2 + @punit;
+        }
+    }
+
+    @media @medium {
+        height: @footer-height-medium;
+
+        text-align: left;
+
+        .sponsor-message {
+        }
+
+        .friends {
+        }
+
+        .logo-links {
+            margin: 0;
+            position: absolute;
+            right: @punit;
+            bottom: 40px;
+        }
+
+        .copyright {
+            margin: 0;
+            position: absolute;
+            left: @punit;
+            bottom: 40px;
+        }
+    }
+}
+
+body {
+    padding-bottom: @footer-height + @footer-cog-size / 2.5 + 40px;
+
+    @media @medium {
+        padding-bottom: @footer-height-medium + @footer-cog-size-medium / 2.5 + 40px;
+    }
+}

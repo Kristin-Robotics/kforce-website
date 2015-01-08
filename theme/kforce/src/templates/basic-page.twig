@@ -1,14 +1,55 @@
 {% extends 'dist/templates/base.twig' %}
 {% block supercontent %}
+
 <header class="site-header">
-    <div class="content-wrapper">
-        <div class="logo-container">
-            <img class="logo" src="img/kforce-logo.svg" alt="K Force Logo" />
+
+    <div class="brand-container">
+        <div class="content-wrapper">
+            <img class="big-logo" src="img/kforce-logo.svg" alt="K Force Logo" />
         </div>
-        <img class="big-logo" src="img/kforce-logo.svg" alt="K Force Logo" />
+    </div>
+
+    <div class="nav-placeholder">
+        <div class="nav-container">
+            <div class="content-wrapper">
+                <div class="logo-container">
+                    <img class="logo" src="img/kforce-logo.svg" alt="K Force Logo" />
+                </div>
+                {{ menu('main', 'dist/templates/_site_nav.twig') }}
+                <div class="menu-button"></div>
+            </div>
+        </div>
     </div>
 </header>
 {% block content %}
 
 {% endblock %}
+<footer class="site-footer">
+    <div class="content-wrapper">
+        <img class="background-cog" src="img/cog-footer.svg" alt="Background Cog" />
+        <div class="sponsor-message">
+            A very special thanks to our <a href="">sponsors</a>.
+        </div>
+        <div class="friends">
+            <h3>Some of our friends</h3>
+            <p>
+                <a href="http://kiwibots.co.nz">Kiwibots</a>
+                <a href="http://vexrobotics.com">VEX Robotics</a>
+                <a href="http://kristin.school.nz">Kristin School</a>
+            </p>
+        </div>
+        <div class="logo-links">
+            <a class="kristin-logo">
+                <img src="img/kristin-logo-footer.svg" alt="Kristin School Logo" />
+            </a>
+            <div class="small-logo-links">
+                <a class="logo-link fb"></a>
+                <a class="logo-link twit"></a>
+                <a class="logo-link yt"></a>
+            </div>
+        </div>
+        <p class="copyright">Copyright &copy; K Force Robotics 2015</p>
+    </div>
+</footer>
+
 {% endblock %}

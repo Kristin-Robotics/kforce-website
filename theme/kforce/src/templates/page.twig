@@ -1,10 +1,14 @@
-{% extends 'dist/templates/base.twig' %}
+{% extends 'dist/templates/basic-page.twig' %}
 {% block content %}
 <!-- Main Page Content and Sidebar -->
 <!-- Main Blog Content -->
 <div class="content-wrapper" role="content">
+    <article class="main-content">
 
-    <article>
+        {% if record.video %}
+        {% elseif record.image %}
+            <div class="page-image" style="background-image: url({{ record.image|thumbnail(1000, 300) }})"></div>
+        {% endif %}
 
         <h1>{{ record.title }}</h1>
 
@@ -12,7 +16,7 @@
             <h3>{{ record.subtitle }}</h3>
         {% endif %}
 
-        {{ record.content }}
+        {{ record.body }}
 
     </article>
 

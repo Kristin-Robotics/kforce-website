@@ -4,53 +4,234 @@
 @header-height: 40px;
 @logo-size-small: 50px;
 @logo-size-large: 100px;
+@menu-width: 250px;
 
 /* Styles
    ========================================================================== */
+
+.nav-container-sticky() {
+    position: fixed;
+
+    .site-nav {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .logo-container {
+        transform: translateY(0);
+    }
+
+    .logo {
+        transform: rotate(0) translateX(0);
+    }
+}
 
 .site-header {
     width: 100%;
     text-align: center;
 
-    height: @header-height;
-
     background: @brand-dark-blue;
 
     .uncollapse();
 
-    .big-logo {
+    * {
+        color: #fff;
+    }
+
+    .brand-container {
         display: none;
+    }
+
+    .nav-placeholder,
+    .nav-container {
+        height: @header-height;
+    }
+
+    .nav-container {
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: @brand-dark-blue;
+
+        .nav-container-sticky;
+    }
+
+    .big-logo {
         margin: 10px auto;
 
         width: 120px;
         height: 120px;
     }
 
-    @media @medium {
-        height: auto;
+    .menu-button, .close-button {
+        .fa;
 
-        .big-logo {
-            display: block;
+        position: absolute;
+        &:before {
+            font-size: 30px;
         }
 
-        .logo-container {
-            display: none;
+        &:hover {
+            color: @brand-light-blue;
+        }
+
+        transition-property: color;
+        transition-duration: 0.2s;
+
+        cursor: pointer;
+    }
+
+    .menu-button {
+        right: @punit;
+        top: (@header-height - 30) / 2;
+
+        &:before {
+            content: @fa-var-bars;
         }
     }
 
+    .close-button {
+        left: @punit;
+        top: (@header-height - 30) / 2;
 
+        &:before {
+            content: @fa-var-close;
+        }
+    }
 
+    .nav-container.active {
+        .site-nav {
+            .no-csstransforms & {
+                right: 0px;
+            }
+
+            .csstransforms & {
+                transform: translateX(-@menu-width);
+            }
+        }
+
+        @media @medium {
+            .csstransforms & .site-nav {
+                transform: none;
+            }
+        }
+    }
+
+    .site-nav {
+        position: fixed;
+        right: -@menu-width;
+        z-index: 10;
+
+        width: @menu-width;
+        height: 100%;
+        padding-left: @punit;
+        box-sizing: border-box;
+
+        background: @brand-dark-blue;
+
+        transform: translateX(0px);
+
+        transition: right 0.5s, transform 0.5s;
+
+        text-align: left;
+
+        .scroll-container {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: .02em;
+            font-size: 1.2em;
+        }
+
+        .scroll-container > ul {
+            margin: 0;
+            margin-top: @header-height + 10px;
+            padding: 0;
+            > li {
+                display: block;
+                > ul {
+                    display: none;
+                }
+            }
+        }
+
+        @media @medium {
+            position: static;
+            margin: auto;
+
+            width: auto;
+            padding: 0;
+
+            background: transparent;
+
+            text-align: center;
+
+            .scroll-container > ul {
+                margin-top: 0;
+                > li {
+                    display: inline;
+
+                    > ul {
+                    }
+                }
+            }
+
+            a {
+                padding: 0 10px;
+                line-height: @header-height;
+            }
+        }
+    }
+
+    @media @medium {
+        .brand-container {
+            display: block;
+        }
+
+        .close-button, .menu-button {
+            display: none;
+        }
+
+        .nav-container {
+            position: static;
+
+            &.sticky {
+                .nav-container-sticky;
+            }
+
+            .logo-container {
+                transform: translateY((@header-height - @logo-size-small) / 2 - 5px);
+
+                transition: transform 0.8s;
+            }
+
+            .logo {
+                transform: translateX(-@logo-size-small - 5px) rotate(-180deg);
+
+                transition: transform 0.8s;
+            }
+        }
+    }
 
     .logo-container {
         position: absolute;
-        left: -5px;
+        left: (@header-height - @logo-size-small) / 2 - 5px + @punit;
         top: (@header-height - @logo-size-small) / 2 - 5px;
+        display: block;
 
         height: @logo-size-small + 10px;
         width: @logo-size-small + 10px;
         border-radius: 50%;
 
         background: @brand-dark-blue;
+
+        overflow: hidden;
     }
 
     .logo {

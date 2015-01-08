@@ -1,0 +1,43 @@
+{% extends 'dist/templates/basic-page.twig' %}
+{% block content %}
+<!-- Main Page Content and Sidebar -->
+<!-- Main Blog Content -->
+<div class="content-wrapper" role="content">
+    <article class="main-content">
+
+        {% if record.video %}
+        {% elseif record.image %}
+            {{ record.image|showimage(1000, 300) }}
+        {% endif %}
+
+        <h1>Robots</h1>
+
+        {% setcontent robots = 'robots' %}
+
+        {% set lastyear = 0 %}
+        {% for robot in robots %}
+            {% if robot.year != lastyear %}
+                <h2>{{ robot.year }} - {{ robot.year + 1 }}</h2>
+                {% set lastyear = robot.year %}
+            {% endif %}
+            <div class="robot-box">
+                <div>
+                    <div>
+                        <a href="{{ robot.link }}" style="background-image: url({{ robot.image|thumbnail(300, 300) }})">
+                            <div class="overlay"></div>
+                            {% if robot.team_letter %}<div class="team">2919{{ robot.team_letter }}</div>{% endif %}
+                            <div class="title">{{ robot.title }}</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </article>
+
+
+</div>
+
+<!-- End Main Content -->
+<!-- End Main Content and Sidebar -->
+{% endblock %}

@@ -1,0 +1,105 @@
+.robot-box {
+    position: relative;
+    float: left;
+
+    width: 100%;
+
+    > div {
+        width: 100%;
+        height: 0;
+        padding-top: 100%;
+
+        > div {
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+            padding: @punit / 2;
+            box-sizing: border-box;
+        }
+    }
+
+    .overlay {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: rgba(0, 0, 0, 0);
+        background: linear-gradient(to top, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.5) 22%,rgba(0,0,0,0) 100%);
+
+        transition: background-color 0.2s;
+    }
+
+    .team {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+
+        padding: 5px;
+        background-color: #fff;
+
+        color: @brand-light-blue;
+        line-height: 1;
+        font-size: 0.8em;
+    }
+
+    .title {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+
+        font-weight: 100;
+        color: #fff;
+
+        .no-cssgradients & {
+            background-color: @brand-dark-blue;
+            background-color: rgba(0, 0, 0, .5);
+        }
+    }
+
+    a {
+        position: relative;
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        background-size: cover;
+        background-position: center;
+        background-color: @brand-dark-blue;
+
+        &:hover {
+            .overlay {
+                background-color: @brand-dark-blue;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        }
+
+    }
+
+    @media @small {
+        width: 50%;
+    }
+
+    @media @medium {
+        width: 33.3%;
+    }
+
+    @media @large {
+        width: 25%;
+    }
+
+    @media @xlarge {
+        width: 20%;
+    }
+}
+
