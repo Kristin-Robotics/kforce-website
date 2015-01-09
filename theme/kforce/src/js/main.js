@@ -84,6 +84,28 @@ $(document).ready(UTIL.loadEvents);
 
 })(jQuery); // Fully reference jQuery after this point.
 
+//Get when transitions have finished on an element
+//Do it instantly if transitions are not supported
+var onTransitionEnd = (function() {
+    var transEndEventNames = {
+        'WebkitTransition': 'webkitTransitionEnd',
+        'MozTransition': 'transitionend',
+        'OTransition': 'oTransitionEnd otransitionend',
+        'msTransition': 'MSTransitionEnd',
+        'transition': 'transitionend'
+    }, transitionEnd = transEndEventNames[Modernizr.prefixed('transition')];
+
+    if (Modernizr.csstransitions) {
+        return function(el, fn) {
+            $(el).one(transitionEnd, fn);
+        }
+    } else {
+        return function(el, fn) {
+            setTimeout(fn, 10);
+        }
+    }
+})();
+
 function mainPage() {
     var sticky = false,
         headerTop = $('.site-header .nav-placeholder').offset().top;

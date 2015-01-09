@@ -20,6 +20,7 @@
 
     .logo-container {
         transform: translateY(0);
+        visibility: visible;
     }
 
     .logo {
@@ -72,6 +73,12 @@
 
         width: 120px;
         height: 120px;
+
+        a {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
     }
 
     .big-logo {
@@ -228,8 +235,12 @@
         text-align: left;
 
         .scroll-container {
+            position: absolute;
+            left: 0;
+            top: @header-height;
+            bottom: 0;
+
             width: 100%;
-            height: 100%;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
         }
@@ -285,7 +296,7 @@
         }
 
         .scroll-container > ul {
-            margin-top: @header-height + 10px;
+            margin-top: 10px;
             > li {
                 min-height: @header-height;
                 display: block;
@@ -343,6 +354,10 @@
 
             text-align: center;
 
+            .scroll-container {
+                position: static;
+            }
+
             .scroll-container > ul {
                 margin-top: 0;
                 > li {
@@ -390,8 +405,9 @@
 
             .logo-container {
                 transform: translateY((@header-height - @logo-size-small) / 2 - 5px);
+                visibility: hidden;
 
-                transition: transform 0.8s;
+                transition: transform 0.8s, visibility 0.8s;
             }
 
             .logo {
@@ -407,6 +423,7 @@
         left: (@header-height - @logo-size-small) / 2 - 5px + @punit;
         top: (@header-height - @logo-size-small) / 2 - 5px;
         display: block;
+        z-index: 20;
 
         height: @logo-size-small + 10px;
         width: @logo-size-small + 10px;
@@ -418,11 +435,17 @@
     }
 
     .logo {
+        display: block;
         margin-top: 5px;
-        margin-bottom: 5px;
+        margin-left: 5px;
 
         height: @logo-size-small;
         width: @logo-size-small;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 
     .content-wrapper {

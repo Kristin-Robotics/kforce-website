@@ -6,7 +6,7 @@
 
     <div class="brand-container">
         <div class="big-container">
-            <img class="big-logo" src="img/kforce-logo.svg" alt="K Force Logo" />
+            <a href="{{ paths.root }}"><img class="big-logo" src="img/kforce-logo.svg" alt="K Force Logo" /></a>
             <div class="logo-text-container left">
                 <div class="big-text">K Force</div>
                 <div class="stripe"></div>
@@ -22,9 +22,7 @@
     <div class="nav-placeholder">
         <div class="nav-container">
             <div class="content-wrapper">
-                <div class="logo-container">
-                    <img class="logo" src="img/kforce-logo.svg" alt="K Force Logo" />
-                </div>
+                <a class="logo-container" href="{{ paths.root }}"><img class="logo" src="img/kforce-logo.svg" alt="K Force Logo" /></a>
                 {{ menu('main', 'dist/templates/_site_nav.twig') }}
                 <div class="menu-button"></div>
             </div>
