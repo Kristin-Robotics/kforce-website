@@ -1,3 +1,11 @@
+/* Variables
+   ========================================================================== */
+
+@pagination-size: 40px;
+
+/* Layout
+   ========================================================================== */
+
 html {
     overflow-x: hidden;
     height: 100%;
@@ -27,18 +35,76 @@ body {
     }
 }
 
-.main-content {
+.ck-content {
     img {
+        display: block;
         width: 100% !important;
+        max-height: 400px;
+        opacity: 0;
+
+        transition: opacity 0.5s;
+    }
+
+    .img-centre {
+        text-align: center;
+    }
+
+    .img-container {
+        display: inline-block;
+    }
+
+    img.wide {
         height: auto !important;
+
+        opacity: 1;
+    }
+
+    img.tall {
+        width: auto !important;
+        visibility: visible;
+
+        opacity: 1;
+    }
+
+    .img-caption {
+        margin-top: 10px;
+        margin-bottom: 0;
+
+        font-size: 0.9em;
+        color: @brand-grey;
+        text-align: center;
+        font-style: italic;
     }
 }
 
-.record {
+.responsive-video {
+    margin-top: 40px;
+}
+
+.responsive-video iframe {
+    width: 100%;
+}
+
+.intro {
+    font-size: 1.5em;
+    font-weight: 100;
+
+    @media @medium {
+        font-size: 1.8em;
+    }
+}
+
+.record-box {
+    @image-size: 200px;
+
     .image-holder {
         float: left;
-        height: 100%;
         margin-right: @punit;
+
+        img {
+            width: @image-size;
+            height: @image-size;
+        }
     }
 
     margin: @punit 0;
@@ -52,15 +118,147 @@ body {
 
     h6 {
         margin-bottom: 0;
+        margin-top: @punit;
+        font-size: 0.8em;
     }
 
     h2 {
         margin-top: 0;
     }
+
+    .record-snippet {
+        .clearfix;
+    }
+
+    &.has-image {
+        .record-content {
+            min-height: @image-size;
+        }
+
+        @media @medium {
+            .record-snippet:after {
+                display: none;
+            }
+
+            .text {
+                padding-left: @image-size + @punit;
+            }
+
+            .image-holder {
+                position: absolute;
+            }
+        }
+    }
+}
+
+.taxonomylink,
+.taxonomylink:visited {
+    .item-tag;
+    font-size: 1em;
+    background-color: @brand-light-blue;
+    color: #fff;
+    margin: 2px;
+    padding: 1px 5px;
+
+    font-family: 'Courier New', courier, monospace;
+}
+
+.taxonomylink:hover {
+    color: @brand-blue;
+}
+
+.author {
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 10px;
+
+    .item-tag;
+
+    background: @brand-blue;
+    color: #fff;
+
+    .page-image & {
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        margin: 0;
+
+        background: #fff;
+        color: @brand-light-blue;
+
+        @media @small {
+            left: auto;
+        }
+    }
+}
+
+.image-gallery {
+    .clearfix;
+    .image {
+        position: relative;
+        float: left;
+
+        width: 33.3%;
+
+        > div {
+            width: 100%;
+            height: 0;
+            padding-top: 100%;
+
+            > div {
+                position: absolute;
+                left: 0;
+                top: 0;
+
+                width: 100%;
+                height: 100%;
+                padding: @punit / 2;
+                box-sizing: border-box;
+            }
+        }
+
+        @media @small {
+            width: 25%;
+        }
+
+        @media @medium {
+            width: 20%;
+        }
+
+        @media @xlarge {
+            width: 12.5%;
+        }
+    }
+
+    a {
+        position: relative;
+        display: block;
+
+        width: 100%;
+        height: 100%;
+
+        background-size: cover;
+        background-position: center;
+        background-color: @brand-dark-blue;
+
+        opacity: 0.7;
+
+        transition: opacity 0.2s;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+h1.dateable {
+    margin-bottom: 0;
 }
 
 .page-image {
     margin-top: 40px;
+    position: relative;
 
     width: 100%;
     height: 300px;
@@ -73,4 +271,93 @@ body {
     min-height: 100%;
     position: relative;
 }
+
+/* Pagination
+   ========================================================================== */
+
+.pagination {
+}
+
+.pagination ul {
+    float: left;
+    clear: both;
+    display: block;
+    margin: 8px 0;
+    padding: 0;
+}
+
+.pagination ul li {
+    float: left;
+
+    width: @pagination-size;
+    height: @pagination-size;
+    box-sizing: border-box;
+
+    list-style-type: none;
+
+    background-color: @button-secondary-colour;
+    border-bottom: 2px solid darken(@button-secondary-colour, 10%);
+    border-right: 1px solid darken(@button-secondary-colour, 10%);
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        background: darken(@button-secondary-colour, 5%);
+    }
+
+    &:active {
+        background: darken(@button-secondary-colour, 10%);
+        border-bottom: none;
+    }
+}
+
+.pagination ul li:last-child {
+    border-right: none;
+}
+
+.pagination ul li a {
+    width: @pagination-size;
+    height: @pagination-size;
+    box-sizing: border-box;
+
+    line-height: @pagination-size;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    display: block;
+    color: @brand-dark-blue;
+}
+
+.pagination ul li.disabled {
+    border-bottom: none;
+
+    &:hover {
+        background: @button-primary-colour;
+    }
+
+    &:active {
+        background: @button-primary-colour;
+    }
+}
+
+.pagination ul li.active {
+    background-color: @button-primary-colour;
+    border-bottom: 2px solid darken(@button-primary-colour, 10%);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+
+    &:hover {
+        background-color: darken(@button-primary-colour, 5%);
+    }
+
+    &:active {
+        background-color: darken(@button-primary-colour, 10%);
+        border-bottom: none;
+    }
+    a {
+        font-weight: bold;
+        color: #fff;
+    }
+}
+
+
 

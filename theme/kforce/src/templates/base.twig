@@ -1,3 +1,4 @@
+{% set pageclasses = pageclasses ~ ' common' %}
 <!DOCTYPE html>
 <html class="no-js" lang="{{ htmllang() }}">
     <head>
@@ -12,8 +13,7 @@
           {% if record.title is not defined and app.config.get('general/payoff') %} | {{ app.config.get('general/payoff') }}{% endif %}
         </title>
 
-        <script src="//use.typekit.net/dih1kxa.js"></script>
-        <script>try{Typekit.load();}catch(e){}</script>
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900,300italic,400italic,900italic' rel='stylesheet' type='text/css'>
 
         {# paths.theme is always a correct path to the current theme. Even if you rename the theme-folder,
            this will keep working. See the documentation on paths: http://docs.bolt.cm/internals#paths #}
@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     </head>
-    <body class="{{ record.contenttype.singularname|lower }} {{ record.slug|lower }}">
+    <body class="{{ record.contenttype.singularname|lower }} {{ record.slug|lower }} {{ pageclasses }}">
         {% block supercontent %}
             <p>There is no content...</p>
         {% endblock %}

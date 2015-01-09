@@ -1,0 +1,53 @@
+.fc-state-default.fc-corner-left, .fc-state-default.fc-corner-right, .fc-state-default {
+    border-radius: 0px;
+}
+
+.fc a,
+.fc a:visited {
+    color: #fff;
+}
+
+.fc a:hover {
+    text-decoration: underline;
+}
+
+.fc-event {
+    padding-left: 5px !important;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background-color: desaturate(@brand-light-blue, 50%);
+    border-radius: 0px;
+    border: 0px solid #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.fc-event.kforce-event {
+    background-color: @brand-light-blue;
+}
+
+.fc-state-default {
+	background: @button-secondary-colour;
+    border: 0px solid #fff;
+	border-bottom: 2px solid darken(@button-secondary-colour, 10%);
+	color: @brand-dark-blue;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.fc-state-hover {
+    background: darken(@button-secondary-colour, 5%);
+}
+
+.fc-state-down {
+    border-bottom: 0px solid #fff;
+    background: darken(@button-secondary-colour, 10%);
+}
+
+.fc-unthemed .fc-today {
+    background-color: @brand-dark-blue;
+    color: #fff;
+}

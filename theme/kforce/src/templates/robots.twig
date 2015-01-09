@@ -18,7 +18,7 @@
         {% for robot in robots %}
             {% if robot.year != lastyear %}
                 <h2>{{ robot.year }} - {{ robot.year + 1 }}</h2>
-                {% set lastyear = robot.year %}
+                <div class="robot-gallery">
             {% endif %}
             <div class="robot-box">
                 <div>
@@ -31,6 +31,10 @@
                     </div>
                 </div>
             </div>
+            {% if robot.year != lastyear %}
+                </div>
+                {% set lastyear = robot.year %}
+            {% endif %}
         {% endfor %}
 
     </article>

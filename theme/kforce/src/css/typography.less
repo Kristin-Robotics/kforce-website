@@ -6,13 +6,6 @@ html {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: @font-heading;
-}
-
-h1, h2, h3 {
-    font-weight: 100;
-}
-
-h4, h5, h6 {
     font-weight: 800;
 }
 
@@ -22,6 +15,10 @@ h3 { font-size: 1.17em;    /* 1.17*16 = 18.72 */   }
 h4 { font-size: 1em;       /* 1*16 = 16 */         }
 h5 { font-size: 0.83em;    /* 0.83*16 = 13.28 */   }
 h6 { font-size: 0.75em;    /* 0.75*16 = 12 */      }
+
+@media @medium {
+    h1 { font-size: 2.5em; }
+}
 
 // Paragraphs
 
@@ -38,15 +35,19 @@ p {
 // Anchors
 a,
 a:visited {
-    text-decoration: underline;
+    text-decoration: none;
+    color: @brand-light-blue;
+    font-weight: bold;
 
     cursor: pointer;
 }
 
 a:hover {
+    color: @brand-blue;
 }
 
 a:focus {
+    outline: none;
 }
 
 a:active {

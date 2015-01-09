@@ -3,20 +3,71 @@
 <!-- Main Page Content and Sidebar -->
 <!-- Main Blog Content -->
 <div class="content-wrapper" role="content">
-    <article class="main-content">
-
+    <article>
+        {% set displayimage = false %}
         {% if record.video %}
+            {{ record.video.responsive }}
         {% elseif record.image %}
-            <div class="page-image" style="background-image: url({{ record.image|thumbnail(1000, 300) }})"></div>
+            <div class="page-image" style="background-image: url({{ record.image|thumbnail(1000, 300) }})">
+                {% if record.contenttype.dateable and not displayimage%}
+                    <div class="author">
+                        {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
+                        {{ __('By %name% on %date%',{ '%name%': record.user.displayname, '%date%': recdate }) }}
+                    </div>
+                {% endif %}
+            </div>
+            {% set displayimage = true %}
+        {% endif %}
+        <h1 {% if record.contenttype.dateable and not displayimage %}class="dateable"{% endif %}>{{ record.title }}</h1>
+
+        {% if record.contenttype.dateable and not displayimage%}
+            <div class="author">
+                {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
+                {{ __('By %name% on %date%',{ '%name%': record.user.displayname, '%date%': recdate }) }}
+            </div>
         {% endif %}
 
-        <h1>{{ record.title }}</h1>
 
         {% if record.subtitle %}
             <h3>{{ record.subtitle }}</h3>
         {% endif %}
 
-        {{ record.body }}
+        {% if record.introduction %}
+            <div class="intro">{{ record.introduction }}</div>
+        {% endif %}
+
+        <div class="ck-content">
+            {{ record.body }}
+        </div>
+
+        {% if record.images and record.images is not empty %}
+            <h2>Images</h2>
+            <div class="image-gallery">
+                {% for image in record.images %}
+                    <div class="image"><div><div>
+                        <a href="{{ image(image) }}" style="background-image: url({{ image|thumbnail(128, 128) }})"></a>
+                    </div></div></div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if record.downloads and record.downloads is not empty %}
+            <h2>Downloads</h2>
+            <ul>
+                {% for file in record.downloads %}
+                    <li><a href="{{ paths.files }}{{ file.filename }}">{{ file.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h5>
+            {% if record.editlink() %}
+            <span class="edit-link"><a href="{{ record.editlink() }}">Edit</a></span> -
+            {% endif %}
+            {# include the 'default' links to taxonomies. Check the documentation for ways to modify and customize
+               what is output to the browser: http://docs.bolt.cm/taxonomies#taxonomies #}
+            {% include 'dist/templates/_sub_taxonomy.twig' with {record: record} %}
+        </h5>
 
     </article>
 

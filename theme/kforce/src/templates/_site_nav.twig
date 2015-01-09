@@ -4,6 +4,7 @@
        class='{% if item|current %}current {% endif %}{% if item.class is defined %}{{item.class}}{% endif %}'>{{item.label}}</a>
 
     {% if item.submenu is defined %}
+        <div class="drop-indicator"></div>
         <ul>
             {% for submenu in item.submenu %}
                 {{ _self.display_menu_item(submenu, loop) }}
@@ -14,7 +15,7 @@
 {% endmacro %}
 
 <nav class="site-nav">
-    <div class="close-button"></div>
+    <div class="close-button-under"><div class="close-button"></div></div>
     <div class="scroll-container">
         <ul class="bolt-menu">
         {% for item in menu %}
