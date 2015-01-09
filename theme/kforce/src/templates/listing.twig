@@ -10,7 +10,7 @@
        are on this page. It can be used for overview pages like 'all entries', or
        'all records tagged with kittens' as well as search result. #}
     {% if mode_resources %}
-        <h1>Resources{% if taxonomytype is defined %}:taxonomy.options[slug]{% endif %}</h1>
+        <h1>Resources{% if taxonomytype is defined %}: {{ slug }}{% endif %}</h1>
     {% else %}
         {# if used for listing a taxonomy: #}
         {% if taxonomytype is defined %}
@@ -55,9 +55,9 @@
                 <div class="text">
                     <div class="record-snippet">
                         {# display something introduction-like.. #}
-                        {% if record.teaser %}
+                        {% if record.teaser != "" %}
                             {{ record.teaser }}
-                        {% elseif record.introduction %}
+                        {% elseif record.introduction != "" %}
                             {{ record.introduction }}
                         {% else %}
                             <p>{{ record.excerpt(300) }}</p>
