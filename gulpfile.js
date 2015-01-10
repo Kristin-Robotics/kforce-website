@@ -7,7 +7,11 @@ var del = require('del');
 var env = require('node-env-file');
 var notifier = require('node-notifier');
 
-//env(__dirname + '/.env');
+try {
+    env(__dirname + '/.env');
+} catch (e) {
+    console.error('Could not load .env file');
+}
 
 var appDeploy = [
     '.htaccess',

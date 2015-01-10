@@ -42,3 +42,4 @@ bower
 *.map
 /files/**/*
 /dist
+.env
