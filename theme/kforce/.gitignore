@@ -1,4 +1,4 @@
 dist/**/*
 _tmp/**/*
 rev-manifest.json
-!.config.yml
+!config.yml

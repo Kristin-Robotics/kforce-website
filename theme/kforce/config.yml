@@ -1,0 +1,28 @@
+# Optional config file for the theme.
+
+# Variables that are in this file, can be used in your twig template like {{ theme.foo }}
+# Note: If variables do not immediately show up, clear the cache, in the Bolt Backend.
+
+foo: bar
+
+# Social media and Google Analytics
+facebook: https://www.facebook.com/kristinrobotics
+twitter: https://twitter.com/kristinrobotics
+youtube: https://www.youtube.com/user/Team2919M
+github: https://github.com/kristin-robotics
+
+kristin: http://kristin.school.nz
+kiwibots: http://kiwibots.co.nz/
+vex: http://vexrobotics.com/
+
+sponsors_page: sponsors
+
+google_analytics: UA-21519011-1
+
+
+# Template filenames:
+maintenance_template: dist/templates/maintenance_default.twig
+homepage_template: dist/templates/homepage.twig
+record_template: dist/templates/page.twig
+listing_template: dist/templates/listing.twig
+search_results_template: dist/templates/listing.twig
