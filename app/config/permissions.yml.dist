@@ -143,12 +143,13 @@ contenttype-all:
 contenttype-default:
     edit: [ editor ]
     create: [ editor ]
+    publish: [ editor ]
+    depublish: [ editor ]
     change-ownership: [ owner ]
     view: [ anonymous ]
     frontend: [ anonymous ]
 
 contenttypes:
-
 # This is an example of how to define Contenttype specific permissions
 #
 # contenttypes:
