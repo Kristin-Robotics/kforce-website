@@ -1,5 +1,6 @@
 {% macro display_menu_item(item, loop) %}
-<li class="index-{{ loop.index }}{% if loop.first %} first{% endif %}{% if loop.last %} last{% endif %}">
+{% spaceless %}
+<li class="index-{{ loop.index }}{% if loop.first %} first{% endif %}{% if loop.last %} last{% endif %}{% if item.submenu is defined %} has-submenu{% endif %}">
     <a href="{{ item.link }}" {% if item.title is defined %}title='{{ item.title|escape }}'{% endif %}
        class='{% if item|current %}current {% endif %}{% if item.class is defined %}{{item.class}}{% endif %}'>{{item.label}}</a>
 
@@ -12,16 +13,16 @@
         </ul>
     {% endif %}
 </li>
+{% endspaceless %}
 {% endmacro %}
 
-<nav class="site-nav">
-    <div class="close-button-under"><div class="close-button"></div></div>
-    <div class="scroll-container">
-        <ul class="bolt-menu">
-        {% for item in menu %}
-            {{ _self.display_menu_item(item, loop) }}
-        {% endfor %}
-        </ul>
-    </div>
-</nav>
+
+<div class="close-button-under"><div class="close-button"></div></div>
+<div class="scroll-container">
+    <ul class="bolt-menu">
+    {% for item in menu %}
+        {{ _self.display_menu_item(item, loop) }}
+    {% endfor %}
+    </ul>
+</div>
 

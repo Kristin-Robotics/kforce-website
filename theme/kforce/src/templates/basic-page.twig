@@ -6,7 +6,7 @@
 
     <div class="brand-container">
         <div class="big-container">
-            <a href="{{ paths.root }}"><img class="big-logo" src="img/kforce-logo.svg" alt="K Force Logo" /></a>
+            <a href="{{ paths.root }}"><img class="big-logo" src="img/kforce-logo.svg" alt="K Force Logo" data-alternate="img/kforce-logo.png"/></a>
             <div class="logo-text-container left">
                 <div class="big-text">K Force</div>
                 <div class="stripe"></div>
@@ -22,8 +22,8 @@
     <div class="nav-placeholder">
         <div class="nav-container">
             <div class="content-wrapper">
-                <a class="logo-container" href="{{ paths.root }}"><img class="logo" src="img/kforce-logo.svg" alt="K Force Logo" /></a>
-                {{ menu('main', 'dist/templates/_site_nav.twig') }}
+                <a class="logo-container" href="{{ paths.root }}"><img class="logo" src="img/kforce-logo.svg" alt="K Force Logo" data-alternate="img/kforce-logo.png"/></a>
+                <nav class="site-nav">{{ menu('main', 'dist/templates/_site_nav.twig') }}</nav>
                 <div class="menu-button"></div>
             </div>
         </div>
@@ -34,7 +34,7 @@
 {% endblock %}
 <footer class="site-footer">
     <div class="content-wrapper">
-        <img class="background-cog" src="img/cog-footer.svg" alt="Background Cog" />
+        <img class="background-cog" src="img/cog-footer.svg" alt="Background Cog" data-alternate="img/cog-footer.png"/>
         <div class="sponsor-message">
             A very special thanks to our <a href="">sponsors</a>.
         </div>
@@ -48,7 +48,7 @@
         </div>
         <div class="logo-links">
             <a class="kristin-logo">
-                <img src="img/kristin-logo-footer.svg" alt="Kristin School Logo" />
+                <img src="img/kristin-logo-footer.svg" alt="Kristin School Logo" data-alternate="img/kristin-logo-footer.png"/>
             </a>
             <div class="small-logo-links">
                 <a class="logo-link fb"></a>

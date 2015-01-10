@@ -1,0 +1,167 @@
+.home-page {
+    .background {
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        height: 100%;
+        width: 100%;
+
+        background-color: @brand-blue;
+        background-image: url('../img/homepage-background.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .home-intro {
+        @media @medium {
+            position: absolute;
+            left: @punit;
+            bottom: @punit;
+
+            width: 200px;
+
+            font-size: 0.9em;
+            text-align: left;
+        }
+
+        @media @large and (min-height: 600px) {
+            font-size: 1.1em;
+            width: 400px;
+        }
+
+        color: #fff;
+        font-weight: 100;
+        text-align: center;
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .site-logo {
+        display: block;
+        margin: 40px auto;
+
+        @media @medium {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -150px;
+        }
+
+        @media @large and (min-height: 600px) {
+            width: 400px;
+            margin-top: -200px;
+            margin-left: -200px;
+        }
+
+        @media @xlarge and (min-height: 800px) {
+            width: 500px;
+            margin-top: -250px;
+            margin-left: -250px;
+        }
+
+        width: 300px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .nav-container {
+        position: absolute;
+        right: @punit;
+        bottom: @punit;
+
+        &.active .homepage-nav {
+            .site-header .nav-container.active .site-nav;
+        }
+    }
+
+    .menu-button {
+        @size: 50px;
+        .fa;
+
+        position: fixed;
+        right: @punit;
+        top: @punit;
+
+        width: @size;
+        height: @size;
+
+        background-color: @brand-dark-blue;
+
+        color: #fff;
+        text-align: center;
+        line-height: @size;
+
+        border-radius: 50%;
+
+        &:before {
+            font-size: 30px;
+            content: @fa-var-bars;
+        }
+
+        &:hover {
+            color: @brand-light-blue;
+        }
+
+        transition-property: color;
+        transition-duration: 0.2s;
+
+        cursor: pointer;
+
+        @media @medium {
+            display: none;
+        }
+    }
+
+    .close-button {
+        &:extend(.site-header .close-button all);
+        color: #fff;
+
+        @media @medium {
+            display: none;
+        }
+    }
+
+
+    .homepage-nav {
+        &:extend(.site-header .site-nav all);
+
+        .scroll-container {
+            > ul {
+                > li {
+                    > ul {
+                        top: auto;
+                        left: auto;
+                        right: 0;
+                        bottom: 30px;
+                    }
+                }
+            }
+        }
+
+        @media @medium {
+            text-align: right;
+            .scroll-container {
+                > ul {
+                    > li {
+                        height: auto;
+                        min-height: 0;
+
+                        > a, > .drop-indicator {
+                            padding-top: 10px;
+                            height: auto;
+                            line-height: 1;
+                        }
+
+                        > ul {
+                            background-image: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

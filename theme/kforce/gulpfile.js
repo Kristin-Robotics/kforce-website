@@ -50,7 +50,7 @@ gulp.task('clean:js', function(cb) {
 
 //Concatenate js files and uglify in building for production
 gulp.task('js', ['clean:js'], function() {
-    return gulp.src(['src/bower/jquery/dist/jquery.js', 'src/bower/magnific-popup/dist/jquery.magnific-popup.js', 'src/bower/moment/moment.js', 'src/bower/fullcalendar/dist/fullcalendar.js', 'src/bower/fullcalendar/dist/gcal.js', 'src/js/**/*.js'])
+    return gulp.src(['src/bower/jquery/dist/jquery.js', 'src/bower/respond/dest/respond.src.js', 'src/bower/magnific-popup/dist/jquery.magnific-popup.js', 'src/bower/moment/moment.js', 'src/bower/fullcalendar/dist/fullcalendar.js', 'src/bower/fullcalendar/dist/gcal.js', 'src/js/**/*.js'])
         .pipe(concat('main.js'))
         .pipe(gulpif(isDist, uglify()))
         .pipe(gulp.dest('_tmp/js'));

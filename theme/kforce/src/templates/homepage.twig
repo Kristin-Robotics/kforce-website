@@ -1,0 +1,18 @@
+{% extends 'dist/templates/base.twig' %}
+{% set pageclasses = pageclasses ~ ' home-page' %}
+{% block supercontent %}
+<div class="background">
+    <div class="content-wrapper">
+        <img class="site-logo" src="img/kforce-logo.svg" data-alternate="img/kforce-logo-large.png"/>
+        <div class="home-intro">
+            {{ record.body }}
+        </div>
+        <div class="nav-container">
+            <div class="menu-button"></div>
+            <nav class="homepage-nav">
+                {{ menu('main', 'dist/templates/_site_nav.twig') }}
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -31,8 +31,6 @@
 .dropdown-active() {
     > ul {
         max-height: 300px;
-
-        background-color: lighten(@brand-dark-blue, 10%);
     }
 }
 
@@ -219,6 +217,7 @@
 
     .site-nav {
         position: fixed;
+        top: 0;
         right: -@menu-width;
         z-index: 10;
 
@@ -261,12 +260,14 @@
 
         .drop-indicator {
             display: inline-block;
-            width: 30px;
-            height: @header-height;
             vertical-align: top;
-            line-height: @header-height;
 
-            margin-right: -8px;
+            width: 20px;
+            height: @header-height;
+            padding-right: 5px;
+
+            line-height: @header-height;
+            text-align: right;
 
             cursor: pointer;
 
@@ -277,16 +278,16 @@
 
                 line-height: @header-height;
                 display: inline-block;
-                border-left: 8px solid transparent;
-                border-right: 8px solid transparent;
+                border-left: 5px inset transparent;
+                border-right: 5px inset transparent;
 
-                border-top: 10px solid #fff;
+                border-top: 7px solid #fff;
 
                 transition: transform 0.2s, border-top 0.2s;
             }
 
             &:hover:before {
-                border-top: 10px solid @brand-light-blue;
+                border-top: 7px solid @brand-light-blue;
             }
         }
 
@@ -298,10 +299,13 @@
         .scroll-container > ul {
             margin-top: 10px;
             > li {
+                position: relative;
+                z-index: 100;
+                vertical-align: top;
+
                 min-height: @header-height;
                 display: block;
                 overflow: visible;
-                z-index: 100;
 
                 &.active {
                     .dropdown-active;
@@ -309,7 +313,7 @@
 
                 &.active {
                     .drop-indicator:before {
-                        transform: rotate(90deg);
+                        transform: rotate(180deg);
                     }
                 }
 
@@ -322,7 +326,7 @@
                     z-index: 100;
                     width: 100%;
                     text-align: left;
-                    background: lighten(@brand-dark-blue, 10%);
+                    background: @brand-blue;
                     top: @header-height;
                     max-height: 0px;
 
@@ -336,7 +340,11 @@
                         }
 
                         &:hover {
-                            background-color: lighten(@brand-dark-blue, 20%);
+                            //background-color: lighten(@brand-dark-blue, 20%);
+                            a,
+                            a:visited{
+                                color: @brand-light-blue;
+                            }
                         }
                     }
                 }
@@ -356,6 +364,8 @@
 
             .scroll-container {
                 position: static;
+
+                overflow: visible;
             }
 
             .scroll-container > ul {
@@ -364,19 +374,22 @@
                     display: inline-block;
                     padding-right: 10px;
 
+                    &.has-submenu {
+                        padding-right: 5px;
+                    }
+
                     &.hover,
                     .no-js &:hover {
-                        background-color: lighten(@brand-dark-blue, 10%);
-
-
                         .dropdown-active;
                     }
 
                     > ul {
-                        background: @brand-dark-blue;
                         position: absolute;
 
                         width: 150px;
+
+                        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0px, rgba(0, 0, 0, 0) 5px);
+                         .subtle-shadow();
                     }
                 }
             }
@@ -411,7 +424,7 @@
             }
 
             .logo {
-                transform: translateX(-@logo-size-small - 5px) rotate(-180deg);
+                transform: translateX(-@logo-size-small - 5px) rotate(-179deg);
 
                 transition: transform 0.8s;
             }
@@ -432,6 +445,8 @@
         background: @brand-dark-blue;
 
         overflow: hidden;
+        // Safari fix
+        -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
     }
 
     .logo {

@@ -1,12 +1,9 @@
 var Main = {
     wWidth: 0,
     wHeight: 0,
-    sizes: {
-        small: 768,
-        medium: 1024,
-        large: 1440,
-        xlarge: 1920
-    }
+    resizes: [],
+    scrolls: [],
+    scrollTop: 0
 };
 
 (function($) {
@@ -18,12 +15,14 @@ var KForce = {
     common: {
         init: function() {
             // JavaScript to be fired on all pages
+            common();
         }
     },
     // Home page
-    home: {
+    homePage: {
         init: function() {
             // JavaScript to be fired on the home page
+            homePage();
         }
     },
     // About us page, note the change from about-us to about_us.
@@ -106,6 +105,48 @@ var onTransitionEnd = (function() {
     }
 })();
 
+
+function common() {
+    // Replace svg with png fallback if not supported
+    if (!Modernizr.svg) {
+        $('img').each(function() {
+            var src = $(this).attr('src');
+            if ((src) && (src.substring(src.lastIndexOf('.') + 1).toLowerCase() === 'svg')) {
+                if ($(this).attr('data-alternate')) {
+                    $(this).attr('src', $(this).attr('data-alternate'));
+                }
+            }
+        });
+    }
+
+    // Listening for events to keep things performant
+    $(window).scroll(function() {
+        Main.scrollTop = $(window).scrollTop();
+        for (i in Main.scrolls) {
+            Main.scrolls[i]();
+        }
+    });
+
+    var resizeTimer;
+    $(window).resize(function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resizeFunction, 200);
+    });
+
+    var resizeFunction = function() {
+        Main.wHeight = $(window).height();
+        Main.wWidth = $(window).width();
+
+        for (i in Main.resizes) {
+            Main.resizes[i]();
+        }
+    };
+
+    Main.wHeight = $(window).height();
+    Main.wWidth = $(window).width();
+    Main.scrollTop = $(window).scrollTop();
+}
+
 function mainPage() {
     var sticky = false,
         headerTop = $('.site-header .nav-placeholder').offset().top;
@@ -120,7 +161,6 @@ function mainPage() {
             var aspect = img.width / img.height,
                 threshold = aspect * maxHeight;
             var resize = function() {
-                console.log('aspect!');
                 if ($parent.width() > threshold) {
                     $this.removeClass('wide').addClass('tall');
                 } else {
@@ -138,29 +178,6 @@ function mainPage() {
         img.src = $this.attr('src');
     });
 
-    // We do not want hovering to be triggered on touch devices
-    $('.scroll-container > ul > li').on('mouseover', function() {
-        $(this).addClass('hover');
-    }).on('mouseout', function() {
-        $(this).removeClass('hover');
-    });
-
-    $('.drop-indicator').click(function() {
-        $(this).closest('li').toggleClass('active');
-    });
-
-    $('.drop-indicator').outside('click', function() {
-        $(this).closest('li').removeClass('active');
-    });
-
-    $('.site-header .menu-button').click(function() {
-        $('.site-header .nav-container').addClass('active');
-    });
-
-    $('.site-header .close-button').click(function() {
-        $('.site-header .nav-container').removeClass('active');
-    });
-
     $('.image-gallery').magnificPopup({
         delegate: 'a',
         type: 'image',
@@ -169,8 +186,10 @@ function mainPage() {
         }
     });
 
+    setupNav($('.site-header .menu-button'), $('.site-header .close-button'), $('.site-header .nav-container'));
+
     var checkHeader = function(resize) {
-        var t = $(window).scrollTop();
+        var t = Main.scrollTop;
         if (t >= headerTop) {
             if (!sticky) {
                 $('.site-header .nav-container').addClass('sticky');
@@ -184,15 +203,11 @@ function mainPage() {
         }
     }
 
-    $(window).scroll(function() {
-        checkHeader();
-    });
+    Main.scrolls.push(checkHeader);
 
     var resize = function() {
-        Main.wHeight = $(window).height();
-        Main.wWidth = $(window).width();
-
         headerTop = $('.site-header .nav-placeholder').offset().top;
+        console.trace('resize!');
         checkHeader(true);
         $('.ck-content img').trigger('ckresize');
 
@@ -201,6 +216,33 @@ function mainPage() {
             $(this).height(Math.min($(this).width() * 9 / 16, Main.wHeight - $('.nav-placeholder').height()));
         });
     };
-    $(window).resize(resize);
+    Main.resizes.push(resize);
     resize();
+}
+
+function setupNav(menu, close, navContainer) {
+    // We do not want hovering to be triggered on touch devices
+    $('.scroll-container > ul > li').on('mouseover', function() {
+        $(this).addClass('hover');
+    }).on('mouseout', function() {
+        $(this).removeClass('hover');
+    });
+
+    $('.drop-indicator').click(function() {
+        $(this).closest('li').toggleClass('active');
+    }).outside('click', function() {
+        $(this).closest('li').removeClass('active');
+    });
+
+    menu.click(function() {
+        navContainer.addClass('active');
+    });
+
+    close.click(function() {
+        navContainer.removeClass('active');
+    });
+}
+
+function homePage() {
+    setupNav($('.nav-container .menu-button'), $('.nav-container .close-button'), $('.nav-container'));
 }
