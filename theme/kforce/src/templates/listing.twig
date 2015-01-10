@@ -1,35 +1,29 @@
 {% extends 'dist/templates/basic-page.twig' %}
+{# This template is used for 'listings': Generic pages that list a number of
+   records from a certain contenttype. These records are available as an array
+   called 'records'. In the for-loop below, we iterate over the records that
+   are on this page. It can be used for overview pages like 'all entries', or
+   'all records tagged with kittens' as well as search result. #}
+
+{% if mode == 'resources' %}
+    {% set title %}Resources{% if taxonomytype is defined %}: {{ slug }}{% endif %}{% endset %}
+{% elseif taxonomytype is defined %}
+    {% set title %}{{ __('Overview for') }}{% if taxonomy.options[slug] is defined %}{{ taxonomy.options[slug] }}{% else %}{{ slug }}{% endif %}{% endset %}
+    {# taxonomies are fetched unordered by design. If we specified an order in config.yml, sort them here: #}
+    {% set records = records|order(app.config.get('general/listing_sort')) %}
+{% elseif search is defined %}
+    {% set title %}{{ __('Search results for <b> %search% </b>.', { '%search%': search|escape }) }}{% endset %}
+{% elseif records is not empty %}
+    {% set title %}{{ records|first.contenttype.name }}{% endset %}
+{% endif %}
+
 {% block content %}
 <!-- Main Page Content and Sidebar -->
 <!-- Main Blog Content -->
 <div class="content-wrapper" role="content">
 
-    {# This template is used for 'listings': Generic pages that list a number of
-       records from a certain contenttype. These records are available as an array
-       called 'records'. In the for-loop below, we iterate over the records that
-       are on this page. It can be used for overview pages like 'all entries', or
-       'all records tagged with kittens' as well as search result. #}
-    {% if mode == 'resources' %}
-        <h1>Resources{% if taxonomytype is defined %}: {{ slug }}{% endif %}</h1>
-    {% elseif taxonomytype is defined %}
-        <h1>
-            {{ __('Overview for') }}
-            {% if taxonomy.options[slug] is defined %}
-                {{ taxonomy.options[slug] }}
-            {% else %}
-                {{ slug }}
-            {% endif %}
-        </h1>
-        {# taxonomies are fetched unordered by design. If we specified an order in config.yml, sort them here: #}
-        {% set records = records|order(app.config.get('general/listing_sort')) %}
-    {% elseif search is defined %}
-            <h1>
-                {{ __('Search results for <b> %search% </b>.', { '%search%': search|escape }) }}
-            </h1>
-    {% elseif records is not empty %}
-        <h1>{{ records|first.contenttype.name }}</h1>
-    {% endif %}
 
+    <h1>{{ title }}</h1>
 
 
     {% for record in records %}

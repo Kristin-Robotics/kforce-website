@@ -5,7 +5,21 @@
 # ------------------------------------------------------------------------------
 # Place your own routes here, that have a HIGHER priority than the default routes.
 
+# resourceslink:
+#  path:               /resources
+#  defaults:           { _controller: 'Bolt\Controllers\Frontend::listing', contenttypeslug: 'resources' }
 
+#resourceslink:
+#  path:               /resources/{category}
+#  defaults:           { _controller: 'Bolt\Controllers\Frontend::listing', contenttypeslug: 'resources' }
+
+resourceslinktax:
+  path:               /resources/{slug}
+  defaults:           { _controller: 'Bolt\Controllers\Frontend::taxonomy', taxonomytype: 'resources' }
+
+templatebinding:
+  path: /calendar
+  defaults: { _controller: 'Bolt\Controllers\Frontend::template', template: 'dist/templates/calendar' }
 
 # ------------------------------------------------------------------------------
 # These are the routes defining the default behaviour of Bolt's frontend.
@@ -47,7 +61,10 @@ contentlisting:
 # ------------------------------------------------------------------------------
 # Place your own routes here, that have a LOWER priority than the default routes.
 
-
+pagebinding:
+  path:           /{slug}
+  defaults:       { _controller: 'Bolt\Controllers\Frontend::record', 'contenttypeslug': 'page' }
+  contenttype:    pages
 
 # ------------------------------------------------------------------------------
 # Routes examples:

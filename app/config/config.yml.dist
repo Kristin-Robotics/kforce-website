@@ -7,13 +7,13 @@ database:
   databasename: bolt
 
 # The name of the website
-sitename: A sample site
+sitename: K Force Robotics
 payoff: The amazing payoff goes here
 
 # The theme to use. Be sure to copy the {theme_path}/base-2014 folder, and change the
 # name here accordingly. Don't edit the templates in theme/base-2014, because
 # they _will_ get updated in next releases
-theme: base-2014
+theme: kforce
 
 # The locale that'll be used by the application. If no locale is set the
 # fallback locale is 'en_GB'. For available options, see: http://docs.bolt.cm/locales
@@ -44,7 +44,7 @@ cron_hour: 3
 #favicon: images/favicon-bolt.ico
 
 # The default content to use for the homepage, and the template to render it with.
-homepage: page/1
+homepage: page/home
 homepage_template: index.twig
 
 # The default content for the 404 page. Uses the 'record_template' template by default.
@@ -155,7 +155,7 @@ accept_file_types: [ twig, html, js, css, scss, gif, jpg, jpeg, png, ico, zip, t
 # the debugbar is only shown to logged-in users. Use the 'debug_show_loggedoff'
 # option to show it to all users. You probably do not want to use this in a
 # production environment.
-debug: true
+debug: false
 developer_notices: false
 debug_show_loggedoff: false
 debug_permission_audit_mode: false
@@ -178,9 +178,9 @@ strict_variables: false
 # options are set to 'false'. If you choose to enable them for your editors, please
 # instruct them thoroughly on their responsibility not to break the layout.
 wysiwyg:
-  images: false
+  images: true
   anchor: false
-  tables: false
+  tables: true
   fontcolor: false
   align: false        # Add 'align left', 'align right',etc.
   subsuper: false     # Add buttons for subscript and superscript, using <sub> and <sup>
@@ -188,12 +188,18 @@ wysiwyg:
   underline: false    # add a button to underline text, using the <u>-tag.
   strike: false       # add a button to add stikethrough, using the <s>-tag.
   blockquote: false
-  codesnippet: false
+  codesnippet: true
   specialchar: false  # adds a button to insert special chars like '€' or '™'.
   ck:
     allowedContent: true # If set to 'true', any elements and attributes are allowed in Wysiwg Elements
     autoParagraph: true # If set to 'true', any pasted content is wrapped in <p> tags for multiple line-breaks
     disableNativeSpellChecker: true # If set to 'true' it will stop browsers from underlining spelling mistakes
+    codeSnippet_languages:
+        javascript: JavaScript
+        markup: Markup (HTML)
+        css: CSS
+        c: C
+        clike: C-Like (if in doubt)
     # viewSourceRoles: [ 'admin', 'developer' ] # the roles which are allowed to use the [Source]-button.
 
 # by default, mail is sent using PHP's built-in mail function. In general, it's advised to use SMTP for sending mail

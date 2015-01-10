@@ -23,3 +23,16 @@ categories:
     behaves_like: categories
     multiple: true
     options: [ news, events, movies, music, books, life, love, fun ]
+    
+resources:
+    name: Category
+    slug: resources
+    singular_name: Category
+    singular_slug: resource
+    behaves_like: grouping
+    options:
+        building: Building
+        programming: Programming
+        cad: CAD
+        other: Other
+    listing_template: dist/templates/resources.twig

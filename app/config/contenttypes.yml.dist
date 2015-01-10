@@ -11,10 +11,10 @@
 # list the different types of services a company provides, you can group these
 # together.
 
-pages:
+pages: &page
     name: Pages
     singular_name: Page
-    fields:
+    fields: &page_fields
         title:
             type: text
             class: large
@@ -22,19 +22,45 @@ pages:
         slug:
             type: slug
             uses: title
-        image:
-            type: image
+        introduction:
+            type: html
+            height: 150px
+            postfix: "<p>This will be displayed as large text at the top of the page</p>"
         teaser:
             type: html
             height: 150px
+            postfix: "<p>This is some text to display in the listings pages, like blog or resources. The default is to use the introduction.</p>"
         body:
             type: html
             height: 300px
         template:
             type: templateselect
             filter: '*.twig'
-    taxonomy: [ chapters ]
+        image:
+            type: image
+            group: media
+        video:
+            type: video
+        downloads:
+            type: filelist
+        images:
+            type: imagelist
+        meta_title:
+            label: Meta Title
+            postfix: "<p>Only use this if you want to override the default</p>"
+            type: text
+            class: wide
+            variant: inline
+            group: seo
+        meta_description:
+            label: Meta Description
+            postfix: "<p>Please provide a small description - 144 characters max</p>"
+            type: textarea
+            height: 50px    
     recordsperpage: 100
+    record_template: 'dist/templates/page.twig'
+    icon_many: "fa:align-left"
+    icon_one: "fa:align-left"
 
 
 # Entries can be used for things like 'news' or 'blogpostings'. They have a 'teaser',
@@ -48,40 +74,66 @@ pages:
 # The 'sort' is set to '-datepublish', which means that newer entries will be
 # shown above older entries.
 
-entries:
-    name: Entries
+blog:
+    name: Blog
     singular_name: Entry
     fields:
-        title:
-            type: text
-            class: large
-            group: content
-        slug:
-            type: slug
-            uses: title
-        teaser:
-            type: html
-            height: 150px
-        body:
-            type: html
-            height: 300px
-        image:
-            type: image
-            group: media
-        video:
-            type: video
+        <<: *page_fields
     relations:
         pages:
           multiple: false
           order: title
           label: Select a page
     taxonomy: [ categories, tags ]
-    record_template: entry.twig
-    listing_template: listing.twig
     listing_records: 10
     default_status: publish
     sort: -datepublish
     recordsperpage: 10
+    dateable: true
+    icon_many: "fa:newspaper-o"
+    icon_one: "fa:newspaper-o"
+    
+
+robots:
+    name: Robots
+    singular_name: Robot
+    fields:
+        team_letter:
+            type: text
+            pattern: "[A-Z]"
+            group: content
+        year:
+            type: integer
+        <<: *page_fields
+    record_template: dist/templates/page.twig
+    listing_template: dist/templates/robots.twig
+    listing_records: 10
+    default_status: publish
+    sort: -year
+    recordsperpage: 10
+    icon_many: "fa:plug"
+    icon_one: "fa:plug"
+    
+resources:
+    name: Resources
+    singular_name: Resource
+    fields:
+        <<: *page_fields
+        body:
+            type: html
+            height: 500px
+            group: content
+    taxonomy: [ resources, tags ]
+    listing_records: 10
+    listing_template: dist/templates/resources.twig
+    default_status: publish
+    sort: -datepublish
+    recordsperpage: 10
+    dateable: true
+    icon_many: "fa:institution"
+    icon_one: "fa:institution"
+
+
 
 # The 'Showcases' is not particularly useful in most cases, but it does a good
 # job of showcasing most of the available fieldtypes. Feel free to delete it, or
@@ -89,97 +141,97 @@ entries:
 # Since no templates are defined for this contenttype, the default record_template,
 # listing_template, and related settings are used from config.yml
 
-showcases:
-    name: Showcases
-    slug: showcases
-    singular_name: Showcase
-    singular_slug: showcase
-    fields:
-        title:
-            type: text
-            class: large
-            required: true
-            pattern: ".{2,255}" # see: http://html5pattern.com/
-            error: "The Title field is required, and must contain at least 2 characters"
-            group: Text
-        slug:
-            type: slug
-            uses: [ title ]
-        html:
-            type: html
-            height: 150px
-        textarea:
-            type: textarea
-            postfix: "<p><em>This is a plain text area. the contents will not be processed.</em></p>"
-        markdown:
-            type: markdown
-            postfix: "<p><em>This field gets parsed as <a href='https://help.github.com/articles/markdown-basics'>Markdown</a>, when rendered on the site.</em></p>"
-        geolocation:
-            type: geolocation
-            group: Media
-        video:
-            type: video
-        image:
-            type: image
-            attrib: title
-            extensions: [ gif, jpg, png ]
-        imagelist:
-            type: imagelist
-        file:
-            type: file
-            group: files
-        filelist:
-            type: filelist
-        template:
-            type: templateselect
-            filter: '*.twig'
-        checkbox:
-            type: checkbox
-            label: "This is a checkbox"
-            group: other
-        datetime:
-            type: datetime
-            default: "2000-01-01"
-            variant: inline            
-        date:
-            type: date
-            default: "first day of last month"
-            variant: inline            
-        integerfield:
-            type: integer
-            index: true
-        floatfield:
-            type: float
-        selectfield:
-            type: select
-            values: [ none, foo, bar ]
-        multiselect:
-            type: select
-            values: [ A-tuin, Donatello, Rafael, Leonardo, Michelangelo, Koopa, Squirtle ]
-            multiple: true
-            postfix: "Select your favourite turtle(s)."
-        selectentry:
-            type: select
-            values: entries/id,title
-            postfix: "Select an entry"
-            class: wide
-    relations:
-        entries:
-            multiple: false
-            label: Choose an entry
-            order: -id
-            format: "{{ item.title|escape }} <span>(№ {{ item.id }})</span>"
-            postfix: "By selecting an Entry, you're creating a di-directional relationshop to that Entry."
-        pages:
-            multiple: true
-            order: title
-            label: Select zero or more pages
-    taxonomy: [ categories, tags ]
-    show_on_dashboard: true
-    default_status: publish
-    searchable: false
-    icon_many: "fa:cubes"
-    icon_one: "fa:cube"
+#showcases:
+#    name: Showcases
+#    slug: showcases
+#    singular_name: Showcase
+#    singular_slug: showcase
+#    fields:
+#        title:
+#            type: text
+#            class: large
+#            required: true
+#            pattern: ".{2,255}" # see: http://html5pattern.com/
+#            error: "The Title field is required, and must contain at least 2 characters"
+#            group: Text
+#        slug:
+#            type: slug
+#            uses: [ title ]
+#        html:
+#            type: html
+#            height: 150px
+#        textarea:
+#            type: textarea
+#            postfix: "<p><em>This is a plain text area. the contents will not be processed.</em></p>"
+#        markdown:
+#            type: markdown
+#            postfix: "<p><em>This field gets parsed as <a href='https://help.github.com/articles/markdown-basics'>Markdown</a>, when rendered on the site.</em></p>"
+#        geolocation:
+#            type: geolocation
+#            group: Media
+#        video:
+#            type: video
+#        image:
+#            type: image
+#            attrib: title
+#            extensions: [ gif, jpg, png ]
+#        imagelist:
+#            type: imagelist
+#        file:
+#            type: file
+#            group: files
+#        filelist:
+#            type: filelist
+#        template:
+#            type: templateselect
+#            filter: '*.twig'
+#        checkbox:
+#            type: checkbox
+#            label: "This is a checkbox"
+#            group: other
+#        datetime:
+#            type: datetime
+#            default: "2000-01-01"
+#            variant: inline            
+#        date:
+#            type: date
+#            default: "first day of last month"
+#            variant: inline            
+#        integerfield:
+#            type: integer
+#            index: true
+#        floatfield:
+#            type: float
+#        selectfield:
+#            type: select
+#            values: [ none, foo, bar ]
+#        multiselect:
+#            type: select
+#            values: [ A-tuin, Donatello, Rafael, Leonardo, Michelangelo, Koopa, Squirtle ]
+#            multiple: true
+#            postfix: "Select your favourite turtle(s)."
+#        selectentry:
+#            type: select
+#            values: entries/id,title
+#            postfix: "Select an entry"
+#            class: wide
+#    relations:
+#        entries:
+#            multiple: false
+#            label: Choose an entry
+#            order: -id
+#            format: "{{ item.title|escape }} <span>(№ {{ item.id }})</span>"
+#            postfix: "By selecting an Entry, you're creating a di-directional relationshop to that Entry."
+#        pages:
+#            multiple: true
+#            order: title
+#            label: Select zero or more pages
+#    taxonomy: [ categories, tags ]
+#    show_on_dashboard: true
+#    default_status: publish
+#    searchable: false
+#    icon_many: "fa:cubes"
+#    icon_one: "fa:cube"
 
 
 # possible field types:
