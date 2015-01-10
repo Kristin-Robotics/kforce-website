@@ -36,24 +36,25 @@
     <div class="content-wrapper">
         <img class="background-cog" src="img/cog-footer.svg" alt="Background Cog" data-alternate="img/cog-footer.png"/>
         <div class="sponsor-message">
-            A very special thanks to our <a href="">sponsors</a>.
+            A very special thanks to our <a href="{{ paths.root }}{{ theme.sponsors_page }}">sponsors</a>.
         </div>
         <div class="friends">
             <h3>Some of our friends</h3>
             <p>
-                <a href="http://kiwibots.co.nz">Kiwibots</a>
-                <a href="http://vexrobotics.com">VEX Robotics</a>
-                <a href="http://kristin.school.nz">Kristin School</a>
+                <a href="{{ theme.kiwibots }}">Kiwibots</a>
+                <a href="{{ theme.vex }}">VEX Robotics</a>
+                <a href="{{ theme.kristin }}">Kristin School</a>
             </p>
         </div>
         <div class="logo-links">
-            <a class="kristin-logo">
+            <a href="{{ theme.kristin }}" class="kristin-logo">
                 <img src="img/kristin-logo-footer.svg" alt="Kristin School Logo" data-alternate="img/kristin-logo-footer.png"/>
             </a>
             <div class="small-logo-links">
-                <a class="logo-link fb"></a>
-                <a class="logo-link twit"></a>
-                <a class="logo-link yt"></a>
+                <a href="{{ theme.facebook }}" class="logo-link fb"></a>
+                <a href="{{ theme.twitter }}" class="logo-link twit"></a>
+                <a href="{{ theme.github }}" class="logo-link github"></a>
+                <a href="{{ theme.youtube }}" class="logo-link yt"></a>
             </div>
         </div>
         <p class="copyright">Copyright &copy; K Force Robotics 2015</p>

@@ -55,14 +55,23 @@
         h3 {
             margin-top: 0;
             margin-bottom: 10px;
+
+            font-weight: 100;
         }
 
         a,
         a:visited {
-            display: block;
 
             color: @footer-colour;
             text-decoration: underline;
+        }
+
+        a {
+            .clearfix;
+        }
+
+        a:hover {
+            color: @brand-light-blue;
         }
     }
 
@@ -72,7 +81,7 @@
         margin-right: auto;
         margin-bottom: 20px;
 
-        width: 125px;
+        width: 150px;
     }
 
     .small-logo-links {
@@ -88,28 +97,46 @@
     }
 
     .logo-link {
+        &, &:visited {
+            color: @footer-colour;
+        }
+
+        .newlink(@content, @colour) {
+            &:hover {
+                color: @colour;
+            }
+
+            &:before {
+                content: @content;
+            }
+        }
+
         display: inline-block;
         //width: 35px;
         .fa;
 
         text-decoration: none;
 
+        transition: color 0.2s;
+
         &:before {
-            font-size: 35px;
+            font-size: 30px;
         }
 
-        //&.fb { text-align: left; }
-        &.fb:before {
-            content: @fa-var-facebook;
+        &.fb {
+            .newlink(@fa-var-facebook, #3b5998);
         }
 
-        &.twit:before {
-            content: @fa-var-twitter;
+        &.twit {
+            .newlink(@fa-var-twitter, #55acee);
         }
 
-        //&.yt { text-align: right; }
-        &.yt:before {
-            content: @fa-var-youtube;
+        &.yt {
+            .newlink(@fa-var-youtube, #e52d27);
+        }
+
+        &.github {
+            .newlink(@fa-var-github, #4183c4);
         }
     }
 
@@ -123,11 +150,10 @@
         }
     }
 
-    .logo-link,
     .kristin-logo {
         opacity: 1;
 
-        transition: 0.5s opacity;
+        transition: opacity 0.5s;
 
         &:hover {
             opacity: 0.5;

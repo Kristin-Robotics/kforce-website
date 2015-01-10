@@ -21,7 +21,8 @@
     "magnific-popup": "~1.0.0",
     "fullcalendar": "~2.2.5",
     "moment": "~2.8.4",
-    "respond": "~1.4.2"
+    "respond": "~1.4.2",
+    "prism": "https://github.com/LeaVerou/prism.git#gh-pages"
   },
   "private": true
 }

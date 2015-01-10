@@ -5,6 +5,8 @@ var rev = require('gulp-rev-all');
 var minifyHTML = require('gulp-minify-html');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var cleanCSS = require('gulp-minify-css');
+var combineMQ = require('gulp-combine-mq');
 var newer = require('gulp-newer');
 var plumber = require('gulp-plumber');
 var autoprefixer = require('gulp-autoprefixer');
@@ -41,6 +43,8 @@ gulp.task('css', ['clean:css'], function() {
             paths: [path.join(__dirname, 'src', 'bower')]
         }) )
         .pipe(autoprefixer({cascade: false}))
+        .pipe(gulpif(isDist, combineMQ()))
+        .pipe(gulpif(isDist, cleanCSS()))
         .pipe(gulp.dest('_tmp/css'));
 });
 
@@ -48,9 +52,25 @@ gulp.task('clean:js', function(cb) {
     del(['_tmp/js/**/*'], cb);
 });
 
+var jsIncludes = [
+    'src/bower/jquery/dist/jquery.js',
+    'src/bower/respond/dest/respond.src.js',
+    'src/bower/magnific-popup/dist/jquery.magnific-popup.js',
+    'src/bower/moment/moment.js',
+    'src/bower/fullcalendar/dist/fullcalendar.js',
+    'src/bower/fullcalendar/dist/gcal.js',
+    'src/bower/prism/prism.js',
+    'src/bower/prism/components/prism-markup.js',
+    'src/bower/prism/components/prism-clike.js',
+    'src/bower/prism/components/prism-css.js',
+    'src/bower/prism/components/prism-javascript.js',
+    'src/bower/prism/components/prism-c.js',
+    'src/js/**/*.js'
+]
+
 //Concatenate js files and uglify in building for production
 gulp.task('js', ['clean:js'], function() {
-    return gulp.src(['src/bower/jquery/dist/jquery.js', 'src/bower/respond/dest/respond.src.js', 'src/bower/magnific-popup/dist/jquery.magnific-popup.js', 'src/bower/moment/moment.js', 'src/bower/fullcalendar/dist/fullcalendar.js', 'src/bower/fullcalendar/dist/gcal.js', 'src/js/**/*.js'])
+    return gulp.src(jsIncludes)
         .pipe(concat('main.js'))
         .pipe(gulpif(isDist, uglify()))
         .pipe(gulp.dest('_tmp/js'));
