@@ -182,11 +182,11 @@ wysiwyg:
   anchor: false
   tables: true
   fontcolor: false
-  align: false        # Add 'align left', 'align right',etc.
-  subsuper: false     # Add buttons for subscript and superscript, using <sub> and <sup>
+  align: true         # Add 'align left', 'align right',etc.
+  subsuper: truee     # Add buttons for subscript and superscript, using <sub> and <sup>
   embed: false        # allows the user to insert embedded video's from Youtube, Vimeo, etc.
   underline: false    # add a button to underline text, using the <u>-tag.
-  strike: false       # add a button to add stikethrough, using the <s>-tag.
+  strike: true        # add a button to add stikethrough, using the <s>-tag.
   blockquote: false
   codesnippet: true
   specialchar: false  # adds a button to insert special chars like '€' or '™'.

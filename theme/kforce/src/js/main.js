@@ -51,7 +51,6 @@ var KForce = {
                     today: 'Today'
                 },
                 eventRender: function(event, element) {
-                    console.log(element.html());
                     element.attr('target', '_BLANK');
                 }
             });
@@ -73,8 +72,7 @@ var UTIL = {
         UTIL.fire('common');
 
         $.each(document.body.className.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); }).split(/\s+/),function(i,classnm) {
-            console.log(classnm);
-        UTIL.fire(classnm);
+            UTIL.fire(classnm);
         });
     }
 };
@@ -152,10 +150,12 @@ function mainPage() {
         headerTop = $('.site-header .nav-placeholder').offset().top;
 
     //Making images in Ckeditor pretty
-    $('.ck-content img').each(function() {
+    $('.ck-content img:not(.no-block)').each(function() {
         var img = new Image(), $this = $(this),
-            $parent = $this.closest('.ck-content'),
-            maxHeight = parseInt($this.css('max-height'));
+            $parent = $this.closest('.ck-content');
+
+        $this.addClass('block');
+        var maxHeight = parseInt($this.css('max-height'));
 
         $(img).one('load', function() {
             var aspect = img.width / img.height,
@@ -207,12 +207,10 @@ function mainPage() {
 
     var resize = function() {
         headerTop = $('.site-header .nav-placeholder').offset().top;
-        console.trace('resize!');
         checkHeader(true);
         $('.ck-content img').trigger('ckresize');
 
         $('.responsive-video iframe').each(function() {
-            console.log(this);
             $(this).height(Math.min($(this).width() * 9 / 16, Main.wHeight - $('.nav-placeholder').height()));
         });
     };

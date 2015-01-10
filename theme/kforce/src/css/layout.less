@@ -37,9 +37,18 @@ body {
 
 .ck-content {
     img {
+        max-width: 100%;
+        height: auto !important;
+    }
+
+    img.sponsor {
+        vertical-align: middle;
+        margin: 10px;
+    }
+
+    img.block {
         display: block;
         width: 100% !important;
-        height: auto !important;
         max-height: 400px;
         opacity: 0;
 
@@ -54,13 +63,13 @@ body {
         display: inline-block;
     }
 
-    img.wide {
+    img.block.wide {
         height: auto !important;
 
         opacity: 1;
     }
 
-    img.tall {
+    img.block.tall {
         width: auto !important;
         visibility: visible;
 
