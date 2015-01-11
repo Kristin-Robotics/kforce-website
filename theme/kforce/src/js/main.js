@@ -6,6 +6,8 @@ var Main = {
     scrollTop: 0
 };
 
+// Page loader from Roots
+// http://roots.io
 (function($) {
 
 // Use this variable to set up the common and page specific functions. If you
