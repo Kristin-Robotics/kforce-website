@@ -152,7 +152,8 @@ function mainPage() {
     //Making images in Ckeditor pretty
     $('.ck-content img:not(.no-block)').each(function() {
         var img = new Image(), $this = $(this),
-            $parent = $this.closest('.ck-content');
+            $parent = $this.closest('.ck-content'),
+            alt = $this.attr('alt');
 
         $this.addClass('block');
         var maxHeight = parseInt($this.css('max-height'));
@@ -167,13 +168,24 @@ function mainPage() {
                     $this.removeClass('tall').addClass('wide');
                 }
             };
+            $this.magnificPopup({
+                type: 'image',
+                image: {
+                    titleSrc: function() {
+                        return alt
+                    }
+                },
+                items: {
+                    src: img.src
+                }
+            });
             resize();
             $this.on('ckresize', resize);
         });
         $this.wrap('<div class="img-centre"><div class="img-container"></div></div>');
 
-        if ($this.attr('alt') !== '') {
-            $this.after('<p class="img-caption">' + $this.attr('alt') + '</p>');
+        if (alt !== '') {
+            $this.after('<p class="img-caption">' + alt + '</p>');
         }
         img.src = $this.attr('src');
     });
@@ -184,6 +196,10 @@ function mainPage() {
         gallery: {
             enabled: true
         }
+    });
+
+    $('.page-image').magnificPopup({
+        type: 'image'
     });
 
     setupNav($('.site-header .menu-button'), $('.site-header .close-button'), $('.site-header .nav-container'));
