@@ -85,10 +85,10 @@ blog:
           order: title
           label: Select a page
     taxonomy: [ categories, tags ]
-    listing_records: 10
+    listing_records: 6
     default_status: publish
     sort: -datepublish
-    recordsperpage: 10
+    recordsperpage: 6
     dateable: true
     icon_many: "fa:newspaper-o"
     icon_one: "fa:newspaper-o"
@@ -107,10 +107,10 @@ robots:
         <<: *page_fields
     record_template: dist/templates/page.twig
     listing_template: dist/templates/robots.twig
-    listing_records: 10
+    listing_records: 6
     default_status: publish
     sort: -year
-    recordsperpage: 10
+    recordsperpage: 6
     icon_many: "fa:plug"
     icon_one: "fa:plug"
     
@@ -124,11 +124,11 @@ resources:
             height: 500px
             group: content
     taxonomy: [ resources, tags ]
-    listing_records: 10
+    listing_records: 6
     listing_template: dist/templates/resources.twig
     default_status: publish
     sort: -datepublish
-    recordsperpage: 10
+    recordsperpage: 6
     dateable: true
     icon_many: "fa:institution"
     icon_one: "fa:institution"
