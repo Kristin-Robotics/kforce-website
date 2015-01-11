@@ -8,8 +8,8 @@
         {% if record.video %}
             {{ record.video.responsive }}
         {% elseif record.image %}
-            <a href="{{ image(record.image|thumbnail(2000, 2000, 'r')) }}" class="page-image" style="background-image: url({{ record.image|thumbnail(1000, 300) }})">
-                {% if record.contenttype.dateable and not displayimage%}
+            <a href="{{ record.image|thumbnail(2000, 2000, 'r') }}" class="page-image" style="background-image: url({{ record.image|thumbnail(1000, 300) }})">
+                {% if record.contenttype.dateable and not displayimage %}
                     <div class="author">
                         {% set recdate = record.datepublish|localdate("%A %B %e, %Y") %}
                         {{ __('By %name% on %date%',{ '%name%': record.user.displayname, '%date%': recdate }) }}
