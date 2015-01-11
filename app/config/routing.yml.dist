@@ -66,6 +66,13 @@ pagebinding:
   defaults:       { _controller: 'Bolt\Controllers\Frontend::record', 'contenttypeslug': 'page' }
   contenttype:    pages
 
+blogbinding:
+  path:           /blog/{datecreated}/{slug}
+  defaults:       { _controller: 'Bolt\Controllers\Frontend::record', 'contenttypeslug': 'blog' }
+  requirements:
+    datecreated:    '\d{4}-\d{2}-\d{2}'
+  contenttype:    blog
+
 # ------------------------------------------------------------------------------
 # Routes examples:
 
