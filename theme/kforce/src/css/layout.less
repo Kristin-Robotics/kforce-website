@@ -340,13 +340,14 @@ h1.dateable {
 
 .pagination ul li.disabled {
     border-bottom: none;
+    cursor: auto;
 
     &:hover {
-        background: @button-primary-colour;
+        background: darken(@button-secondary-colour, 5%);
     }
 
     &:active {
-        background: @button-primary-colour;
+        background: darken(@button-secondary-colour, 5%);
     }
 }
 
