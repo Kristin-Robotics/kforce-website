@@ -127,20 +127,24 @@ function common() {
         }
     });
 
-    var resizeTimer;
+    var resizeTimer, didResize = false;
     $(window).resize(function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(resizeFunction, 200);
+        didResize = true;
     });
 
     var resizeFunction = function() {
-        Main.wHeight = $(window).height();
-        Main.wWidth = $(window).width();
+        if (didResize) {
+            Main.wHeight = $(window).height();
+            Main.wWidth = $(window).width();
 
-        for (i in Main.resizes) {
-            Main.resizes[i]();
+            for (i in Main.resizes) {
+                Main.resizes[i]();
+            }
+            didResize = false;
         }
+        setTimeout(resizeFunction, 100);
     };
+    setTimeout(resizeFunction, 100);
 
     Main.wHeight = $(window).height();
     Main.wWidth = $(window).width();
