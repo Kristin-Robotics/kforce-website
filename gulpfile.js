@@ -96,7 +96,7 @@ gulp.task('bundle', function(cb) {
 // gulp bundle
 // first
 gulp.task('deploy:app', function() {
-    return gulp.src('dist/oasis-bundle.zip', {base: './dist'})
+    return gulp.src('dist/kforce-bundle.zip', {base: './dist'})
         .pipe(ftp({
             host: process.env.FTPHOST,
             user: process.env.FTPUSER,
