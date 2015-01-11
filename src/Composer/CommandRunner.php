@@ -372,12 +372,12 @@ class CommandRunner
         }
 
         // Ping the extensions server to confirm connection
-        $response = $this->ping($this->app['extend.site'], 'ping', true);
+        /*$response = $this->ping($this->app['extend.site'], 'ping', true);
         if (! in_array($response, $httpOk)) {
             $this->messages[] = $this->app['extend.site'] . ' is unreachable.';
 
             $this->offline = true;
-        }
+        }*/
 
         if ($this->offline) {
             $this->messages[] = 'Unable to install/update extensions!';
