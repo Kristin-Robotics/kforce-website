@@ -116,9 +116,19 @@ body {
     .image-holder {
         margin-bottom: @punit;
 
-        img {
+        a {
             margin-left: auto;
             margin-right: auto;
+
+            display: block;
+            width: @image-size;
+            height: @image-size;
+
+            background-size: cover;
+            background-position: center center;
+        }
+
+        img {
             display: block;
 
             width: @image-size;

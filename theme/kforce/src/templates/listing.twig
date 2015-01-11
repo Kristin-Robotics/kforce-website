@@ -27,15 +27,15 @@
 
 
     {% for record in records %}
-        <article class="record-box{% if record.image!="" %} has-image{% endif %}">
+        {% set hasimage = record.image != "" or record.video.thumbnail %}
+        <article class="record-box{% if hasimage %} has-image{% endif %}">
 
             <h2><a href="{{ record.link }}">{{ record.title }}</a></h2>
-
             <div class="record-content">
-                {% if record.image!="" %}
+                {% if hasimage %}
                 <div class="image-holder">
-                    <a href="{{ record.link }}">
-                        <img src="{{ thumbnail(record.image, 200, 200) }}">
+                    <a href="{{ record.link }}"{% if record.video.thumbnail and record.image == "" %} style="background-image: url({{ record.video.thumbnail }});"{% endif %}>
+                        {% if record.image!="" %}<img src="{{ thumbnail(record.image, 200, 200) }}">{% endif %}
                     </a>
                 </div>
                 {% endif %}
