@@ -62,7 +62,7 @@ contentlisting:
 # Place your own routes here, that have a LOWER priority than the default routes.
 
 pagebinding:
-  path:           /{slug}
+  path:           /{slug}/
   defaults:       { _controller: 'Bolt\Controllers\Frontend::record', 'contenttypeslug': 'page' }
   contenttype:    pages
 
