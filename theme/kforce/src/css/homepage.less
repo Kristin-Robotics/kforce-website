@@ -1,6 +1,6 @@
 .home-page {
     .background {
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
 
@@ -13,6 +13,15 @@
         background-position: center;
     }
 
+    .content-wrapper {
+        position: relative;
+        z-index: 1;
+
+        @media @medium {
+            position: static;
+        }
+    }
+
     .home-intro {
         @media @medium {
             position: absolute;
@@ -23,6 +32,10 @@
 
             font-size: 0.9em;
             text-align: left;
+
+            p:last-child {
+                margin-bottom: 0;
+            }
         }
 
         @media @large and (min-height: 600px) {
@@ -33,10 +46,6 @@
         color: #fff;
         font-weight: 100;
         text-align: center;
-
-        p:last-child {
-            margin-bottom: 0;
-        }
     }
 
     .site-logo {
