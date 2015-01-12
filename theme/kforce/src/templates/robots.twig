@@ -1,3 +1,22 @@
+{% macro display_robots(robots, year) %}
+    <h2>{{ year }} - {{ year + 1 }}</h2>
+    <div class="robot-gallery">
+        {% for robot in robots %}
+            <div class="robot-box">
+                <div>
+                    <div>
+                        <a href="{{ robot.link }}" style="background-image: url({{ robot.image|thumbnail(300, 300) }})">
+                            <div class="overlay"></div>
+                            {% if robot.team_letter %}<div class="team">2919{{ robot.team_letter }}</div>{% endif %}
+                            <div class="title">{{ robot.title }}</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endmacro %}
+{% import _self as utils %}
 {% extends 'dist/templates/basic-page.twig' %}
 {% block content %}
 <!-- Main Page Content and Sidebar -->
@@ -12,30 +31,23 @@
 
         <h1>Robots</h1>
 
-        {% setcontent robots = 'robots' %}
+        {% setcontent robots = 'robots' orderby '-year' %}
 
         {% set lastyear = 0 %}
+        {% set lastind = 0 %}
+        {% set robotset = [] %}
         {% for robot in robots %}
+            {% if loop.first %}{% set lastyear = robot.year %}{% endif %}
             {% if robot.year != lastyear %}
-                <h2>{{ robot.year }} - {{ robot.year + 1 }}</h2>
-                <div class="robot-gallery">
-            {% endif %}
-            <div class="robot-box">
-                <div>
-                    <div>
-                        <a href="{{ robot.link }}" style="background-image: url({{ robot.image|thumbnail(300, 300) }})">
-                            <div class="overlay"></div>
-                            {% if robot.team_letter %}<div class="team">2919{{ robot.team_letter }}</div>{% endif %}
-                            <div class="title">{{ robot.title }}</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% if robot.year != lastyear %}
-                </div>
+                {{ utils.display_robots(robotset|order('team_letter'), lastyear) }}
                 {% set lastyear = robot.year %}
+                {% set robotset = [] %}
             {% endif %}
+            {% set robotset = robotset|merge([robot]) %}
         {% endfor %}
+        {% if robots is not empty %}
+            {{ utils.display_robots(robotset|order('team_letter'), lastyear) }}
+        {% endif %}
 
     </article>
 
