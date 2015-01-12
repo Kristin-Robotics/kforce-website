@@ -6,7 +6,7 @@
    'all records tagged with kittens' as well as search result. #}
 
 {% if mode == 'resources' %}
-    {% set title %}Resources{% if taxonomytype is defined %}: {{ slug }}{% endif %}{% endset %}
+    {% set title %}Resources{% if taxonomytype is defined %}: {% if taxonomy.options[slug] is defined %}{{ taxonomy.options[slug] }}{% else %}{{ slug }}{% endif %}{% endif %}{% endset %}
 {% elseif taxonomytype is defined %}
     {% set title %}{{ __('Overview for') }}{% if taxonomy.options[slug] is defined %}{{ taxonomy.options[slug] }}{% else %}{{ slug }}{% endif %}{% endset %}
     {# taxonomies are fetched unordered by design. If we specified an order in config.yml, sort them here: #}
@@ -24,7 +24,6 @@
 
 
     <h1>{{ title }}</h1>
-
 
     {% for record in records %}
         {% set hasimage = record.image != "" or record.video.thumbnail %}
