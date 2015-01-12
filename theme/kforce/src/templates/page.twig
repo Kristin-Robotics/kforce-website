@@ -44,7 +44,7 @@
             <div class="image-gallery">
                 {% for image in record.images %}
                     <div class="image"><div><div>
-                        <a href="{{ image(image) }}" title="{{ image.title }}" style="background-image: url({{ image|thumbnail(128, 128) }})"></a>
+                        <a href="{{ image|thumbnail(2000, 2000, 'r') }}" title="{{ image.title }}" style="background-image: url({{ image|thumbnail(128, 128) }})"></a>
                     </div></div></div>
                 {% endfor %}
             </div>
