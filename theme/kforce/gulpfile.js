@@ -59,7 +59,7 @@ var jsIncludes = [
     'src/bower/moment/moment.js',
     'src/bower/fullcalendar/dist/fullcalendar.js',
     'src/bower/fullcalendar/dist/gcal.js',
-    'src/bower/prism/prism.js',
+    'src/bower/prism/components/prism-core.js',
     'src/bower/prism/components/prism-markup.js',
     'src/bower/prism/components/prism-clike.js',
     'src/bower/prism/components/prism-css.js',
