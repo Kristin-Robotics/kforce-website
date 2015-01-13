@@ -1,5 +1,5 @@
 {% macro display_robots(robots, year) %}
-    <h2>{{ year }} - {{ year + 1 }}</h2>
+    <h2>{{ year }} - {{ year + 1 }}{% if theme.competitions[year + ''] %}: {{ theme.competitions[year + ''] }}{% endif %}</h2>
     <div class="robot-gallery">
         {% for robot in robots %}
             <div class="robot-box">

@@ -19,6 +19,15 @@ sponsors_page: sponsors
 
 google_analytics: UA-21519011-1
 
+# Competition Names
+competitions:
+    2008: Elevation
+    2009: Clean Sweep
+    2010: Round Up
+    2011: Gateway
+    2012: Sack Attack
+    2013: Toss Up
+    2014: Skyrise
 
 # Template filenames:
 maintenance_template: dist/templates/maintenance_default.twig
