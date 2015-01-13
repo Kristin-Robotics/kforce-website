@@ -255,7 +255,7 @@ function setupNav(menu, close, navContainer) {
     });
 
     menu.click(function() {
-        navContainer.addClass('active');
+        navContainer.toggleClass('active');
     });
 
     close.click(function() {

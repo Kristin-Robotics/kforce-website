@@ -33,6 +33,9 @@
 @large-size: 1440px;
 @xlarge-size: 1920px;
 
+@header-query-height: 400px;
+@header-query-height-plus: (@header-query-height + 1);
+
 @xsmall-plus: (@xsmall-size + 1);
 @small-plus: (@small-size + 1);
 @medium-plus: (@medium-size + 1);
@@ -62,6 +65,8 @@
 
 @xxlarge: ~"@{screen} and (min-width:@{xlarge-plus})";
 @xxlarge-only: @xxlarge;
+
+@header-ready: ~"@{screen} and (min-width:@{small-plus}) and (min-height:@{header-query-height})";
 
 
 /* Font-Awesome

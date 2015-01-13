@@ -1,10 +1,10 @@
 .home-page {
     .background {
-        position: fixed;
+        position: absolute;
         left: 0;
         top: 0;
 
-        height: 100%;
+        min-height: 100%;
         width: 100%;
 
         background-color: @brand-blue;
@@ -17,13 +17,13 @@
         position: relative;
         z-index: 1;
 
-        @media @medium {
+        @media @header-ready {
             position: static;
         }
     }
 
     .home-intro {
-        @media @medium {
+        @media @header-ready {
             position: absolute;
             left: @punit;
             bottom: @punit;
@@ -52,7 +52,7 @@
         display: block;
         margin: 40px auto;
 
-        @media @medium {
+        @media @header-ready {
             position: absolute;
             left: 50%;
             top: 50%;
@@ -120,7 +120,7 @@
 
         cursor: pointer;
 
-        @media @medium {
+        @media @header-ready {
             display: none;
         }
     }
@@ -129,7 +129,7 @@
         &:extend(.site-header .close-button all);
         color: #fff;
 
-        @media @medium {
+        @media @header-ready {
             display: none;
         }
     }
@@ -151,7 +151,7 @@
             }
         }
 
-        @media @medium {
+        @media @header-ready {
             text-align: right;
             .scroll-container {
                 > ul {
