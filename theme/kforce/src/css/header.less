@@ -30,7 +30,14 @@
 
 .dropdown-active() {
     > ul {
-        max-height: 300px;
+        .iterations(@n) when (@n > 0) {
+            &.drop-@{n} {
+                max-height: @n * @header-height;
+            }
+            .iterations(@n - 1);
+        }
+
+        .iterations(6);
     }
 }
 
@@ -330,7 +337,7 @@
                     top: @header-height;
                     max-height: 0px;
 
-                    transition: max-height 0.8s;
+                    transition: max-height 0.6s, visibility 0.6s;
 
                     > li {
                         display: block;

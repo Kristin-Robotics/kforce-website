@@ -6,7 +6,7 @@
 
     {% if item.submenu is defined %}
         <div class="drop-indicator"></div>
-        <ul>
+        <ul class="drop-{{ item.submenu|length }}">
             {% for submenu in item.submenu %}
                 {{ _self.display_menu_item(submenu, loop) }}
             {% endfor %}
