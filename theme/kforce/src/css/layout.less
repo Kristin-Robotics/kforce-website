@@ -317,6 +317,16 @@ h1.dateable {
     position: relative;
 }
 
+.multi-column {
+    column-gap: @punit * 3;
+    @media @medium {
+        column-count: 2;
+    }
+    @media @xlarge {
+        column-count: 3;
+    }
+}
+
 /* Pagination
    ========================================================================== */
 
