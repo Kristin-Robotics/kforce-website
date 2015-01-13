@@ -25,7 +25,7 @@ var appDeploy = [
     '!./app/database/**/*',
     '!./app/cache/**/*',
     './app/cache/index.html',
-    './extensions/**/*',
+    './extensions/',
     './files/index.html',
     './files/.htaccess',
     './index.php',
