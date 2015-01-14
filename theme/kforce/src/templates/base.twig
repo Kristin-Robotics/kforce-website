@@ -31,9 +31,15 @@
            sitename. If there is no title, we append the sitename with the payoff, if there is one. -#}
         <title>{{ realtitle }}</title>
 
+        <link rel="canonical" href="{{ paths.canonicalurl }}" />
         <meta name="description" content="{{ description }}" />
         <meta property="og:title" content="{{ realtitle }}" />
+        <meta property="og:url" content="{{ paths.canonicalurl }}" />
         <meta property="og:description" content="{{ description }}" />
+        {% if record.image != "" %}<meta property="og:image" content="{{ paths.hosturl }}{{ paths.files }}{{ record.image }}" />{% endif %}
+
+        {% if record.video != "" %}<meta property="og:video" content="{{ record.video.url }}" />{% endif %}
+
 
         <link rel="shortcut icon" href="{{ paths.root }}favicon.ico">
         <link rel="icon" href="{{ paths.root }}favicon.ico">
