@@ -155,6 +155,8 @@ function mainPage() {
     var sticky = false,
         headerTop = $('.site-header .nav-placeholder').offset().top;
 
+    $('.small-logo-links a').after(' ');
+
     //Making images in Ckeditor pretty
     $('.ck-content img:not(.no-block)').each(function() {
         var img = new Image(), $this = $(this),
